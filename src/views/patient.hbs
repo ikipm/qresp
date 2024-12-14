@@ -110,20 +110,5 @@
     <div class="details">
         <p style="font-size: 45px"><span>DIAGNÒSTIC</span></p>
     </div>
-    <button class="checkmark" onclick="lol()"></button>
+    <a href="/patient/edit/{{patient.id}}">Crear diagnòstic</a>
 </div>
-<div id="diagnosticInfo" style="display: none;">
-    <h1>diagnostic</h1>
-</div>
-
-<script>
-        function lol(){
-            var info = document.getElementById("diagnosticInfo")
-            if(info.style.display == "block") {
-                info.style.display = "none"
-            }
-            else {
-                info.style.display = "block"
-            }
-        }
-    </script>
