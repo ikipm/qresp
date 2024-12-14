@@ -1,4 +1,4 @@
-function getDiagnostic(dades) {
+function getDiagnostic(dadesPacient) {
     var diagnostic = "";
 
     // **Diagnòstic principal basat en els símptomes**
