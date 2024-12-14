@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ikipm/qresp#readme",
   "dependencies": {
     "express": "^4.21.2",
-    "express-handlebars": "^8.0.1"
+    "express-handlebars": "^8.0.1",
+    "qrcode": "^1.5.4"
   }
 }
