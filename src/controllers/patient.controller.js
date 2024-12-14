@@ -3,7 +3,6 @@ import {createTable, insertPacient, getAllPacients, getPacientById, updatePacien
 import { getDiagnostic } from '../algoritme.js';
 
 const RenderPatientInfo = async (req, res) => {
-  console.log("This is the param: " + req.params.id);
     try {
         const patient = await getPacientById(req.params.id);
         if (patient) {
@@ -16,20 +15,6 @@ const RenderPatientInfo = async (req, res) => {
         console.error('Error getting pacients:', err);
         res.status(500).send('Server internal error');
       }
-}
-
-const UpdatePacientView = async (req, res) => {
-  try {
-    const patient = await getPacientById(req.params.id);
-    if (patient) {
-      res.render('updatePatient', { patient });
-    } else {
-      res.status(404).send('Patient not found');
-    }
-  } catch (err) {
-    console.error('Error getting pacients:', err);
-    res.status(500).send('Server internal error');
-  }
 }
 
 const saveUpdatePacient = async (req, res) => {
