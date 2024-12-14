@@ -1,5 +1,4 @@
-function getDiagnostic(pacient) {
-    dadesPacient = pacient.dadesPacient;
+function getDiagnostic(dadesPacient) {
     var diagnostic = "";
 
     // **Diagnòstic principal basat en els símptomes**
@@ -61,3 +60,5 @@ function getDiagnostic(pacient) {
 
     return diagnostic;
 }
+
+export { getDiagnostic };
