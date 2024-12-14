@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/proves_db.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,7 +17,10 @@
     "url": "https://github.com/ikipm/qresp/issues"
   },
   "homepage": "https://github.com/ikipm/qresp#readme",
+  "type": "module",
   "dependencies": {
-    "express": "^4.21.2"
+    "better-sqlite3": "^11.7.0",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
   }
 }
