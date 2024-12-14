@@ -55,3 +55,5 @@ class Pacient {
         Object.assign(this.dadesPacient, dades);
     }
 }
+
+export {Pacient};
