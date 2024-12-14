@@ -1,47 +1,5 @@
-
-var dadesPacient = {
-    PresenciaDeFebre: false,
-    ofeg: false,
-    IncrementMucositatICongestioNasalDolorDeGola: false,
-    IncrementMucositatIFebre: false,
-    DolorToracic: false,
-    Xiulets: false,
-
-    SignesAlarmaPresents: {
-        FebreAltaODesaturacio: false,
-        IncrementDeRespiracions: false, // representa que aquest valor és true quan >=19 respiracions per minut
-        OfegEnReposOCianosi: false
-    },
-
-    malaltiesPrevis: false,
-    altresCròniques: false,
-
-    medicacioHabit: {
-        antifibrotics: false,
-        immunosupressors: false,
-        oxigenoterapia: false
-    },
-
-    habitsToxics: {
-        consumTabac: false,
-        exposicioFum: false
-    },
-
-    antacadents: false,
-    edat: 0, // Valor inicial per a edat
-    DLCO: 0, // Difusió del monòxid de carboni (%)
-    FVC: 0,  // Capacitat vital forçada (%)
-    desaturacioPM6M: false, // Desaturació a la prova de marxa de 6 minuts
-    hipertensioPulmonar: false,
-    enfisema: false,
-    refluxGastroesofagic: false,
-    apneaSon: false,
-    carcinomaBroncogenic: false
-};
-
-
-
-function diagnosticF(dades) {
+function getDiagnostic(pacient) {
+    dadesPacient = pacient.dadesPacient;
     var diagnostic = "";
 
     // **Diagnòstic principal basat en els símptomes**
@@ -103,7 +61,3 @@ function diagnosticF(dades) {
 
     return diagnostic;
 }
-
-
-// Exemple d'ús amb dades d'un pacient
-var diagnostic = diagnosticF(dadesPacient);
