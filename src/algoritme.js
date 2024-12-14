@@ -397,7 +397,6 @@ function getDiagnosticEXTRA(Pacient){
         } else if (dadesPacient.Xiulets) {
             diagnostic += "Diagnòstic: Indicatiu d'obstrucció bronquial o asma superposada. Tractament amb broncodilatadors.\n";
         }
-        return diagnostic;
     }
 
     // [3] Signes d'alarma
