@@ -18,8 +18,6 @@ function getDiagnostic(Pacient){
     else return getDiagnosticEXTRA(Pacient);
 
 }
-
-
 function getDiagnosticFPI(Pacient) {
 
     var diagnostic = [];
