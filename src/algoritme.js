@@ -27,7 +27,6 @@ function getDiagnosticFPI(Pacient) {
     // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
         diagnostic += "Diagnòstic: Exacerbació aguda de FPI amb sospita d'infecció. Recomanat tractament antibiòtic empíric.\n";
-        return diagnostic;
     }
 
     // [2] Ofeg i/o tos
@@ -182,7 +181,6 @@ function getDiagnosticEPIDEAS(Pacient){
     // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
         diagnostic += "Diagnòstic: Exacerbació aguda de Fibrosi Pulmonar associada a malaltia autoimmune. Possible infecció superposada. Recomanat tractament antibiòtic empíric.\n";
-        return diagnostic;
     }
 
     // [2] Ofeg i/o tos
@@ -256,7 +254,6 @@ function getDiagnosticFNC(Pacient){
     // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
         diagnostic += "Diagnòstic: Exacerbació aguda de Fibrosi Pulmonar No Classificable amb possible infecció. Recomanat tractament antibiòtic empíric.\n";
-        return diagnostic;
     }
 
     // [2] Ofeg i/o tos
@@ -322,7 +319,6 @@ function getDiagnosticSAR(Pacient){
     // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
         diagnostic += "Diagnòstic: Sarcoïdosi amb exacerbació sistèmica. Possible infecció superposada. Recomanat tractament antibiòtic i control dels símptomes.\n";
-        return diagnostic;
     }
 
     // [2] Ofeg i/o tos
