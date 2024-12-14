@@ -26,7 +26,6 @@ function createTable() {
             MedicacioHabit_Oxigenoterapia BOOLEAN,
             HabitsToxics_ConsumTabac BOOLEAN,
             HabitsToxics_ExposicioFum BOOLEAN,
-            Antecedents BOOLEAN,
             Edat INTEGER,
             DLCO REAL,
             FVC REAL,
@@ -50,7 +49,7 @@ function insertPacient(pacient) {
             SignesAlarma_FebreAltaODesaturacio, SignesAlarma_IncrementDeRespiracions,
             SignesAlarma_OfegEnReposOCianosi, MalaltiesPrevis, AltresCroniques,
             MedicacioHabit_Antifibrotics, MedicacioHabit_Immunosupressors, MedicacioHabit_Oxigenoterapia,
-            HabitsToxics_ConsumTabac, HabitsToxics_ExposicioFum, Antecedents, Edat,
+            HabitsToxics_ConsumTabac, HabitsToxics_ExposicioFum, Edat,
             DLCO, FVC, DesaturacioPM6M, HipertensioPulmonar, Enfisema, RefluxGastroesofagic,
             ApneaSon, CarcinomaBroncogenic
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
@@ -58,23 +57,24 @@ function insertPacient(pacient) {
     const statement = db.prepare(query);
     return statement.run(
         pacient.name, pacient.cognom1, pacient.cognom2,
-        pacient.dadesPacient.PresenciaDeFebre, pacient.dadesPacient.ofeg,
-        pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola, pacient.dadesPacient.IncrementMucositatIFebre,
-        pacient.dadesPacient.DolorToracic, pacient.dadesPacient.Xiulets,
-        pacient.dadesPacient.SignesAlarmaPresents.FebreAltaODesaturacio,
-        pacient.dadesPacient.SignesAlarmaPresents.IncrementDeRespiracions,
-        pacient.dadesPacient.SignesAlarmaPresents.OfegEnReposOCianosi,
-        pacient.dadesPacient.malaltiesPrevis, pacient.dadesPacient.altresoniques,
-        pacient.dadesPacient.medicacioHabit.antifibrotics,
-        pacient.dadesPacient.medicacioHabit.immunosupressors,
-        pacient.dadesPacient.medicacioHabit.oxigenoterapia,
-        pacient.dadesPacient.habitsToxics.consumTabac,
-        pacient.dadesPacient.habitsToxics.exposicioFum,
-        pacient.dadesPacient.antecedents, pacient.edat,
+        pacient.dadesPacient.PresenciaDeFebre ? 1 : 0, pacient.dadesPacient.ofeg ? 1 : 0,
+        pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola ? 1 : 0,
+        pacient.dadesPacient.IncrementMucositatIFebre ? 1 : 0,
+        pacient.dadesPacient.DolorToracic ? 1 : 0, pacient.dadesPacient.Xiulets ? 1 : 0,
+        pacient.dadesPacient.SignesAlarmaPresents.FebreAltaODesaturacio ? 1 : 0,
+        pacient.dadesPacient.SignesAlarmaPresents.IncrementDeRespiracions ? 1 : 0,
+        pacient.dadesPacient.SignesAlarmaPresents.OfegEnReposOCianosi ? 1 : 0,
+        pacient.dadesPacient.malaltiesPrevis ? 1 : 0, pacient.dadesPacient.altresCroniques ? 1 : 0,
+        pacient.dadesPacient.medicacioHabit.antifibrotics ? 1 : 0,
+        pacient.dadesPacient.medicacioHabit.immunosupressors ? 1 : 0,
+        pacient.dadesPacient.medicacioHabit.oxigenoterapia ? 1 : 0,
+        pacient.dadesPacient.habitsToxics.consumTabac ? 1 : 0,
+        pacient.dadesPacient.habitsToxics.exposicioFum ? 1 : 0,
+        pacient.edat,
         pacient.dadesPacient.DLCO, pacient.dadesPacient.FVC,
-        pacient.dadesPacient.desaturacioPM6M, pacient.dadesPacient.hipertensioPulmonar,
-        pacient.dadesPacient.enfisema, pacient.dadesPacient.refluxGastroesofagic,
-        pacient.dadesPacient.apneaSon, pacient.dadesPacient.carcinomaBroncogenic
+        pacient.dadesPacient.desaturacioPM6M, pacient.dadesPacient.hipertensioPulmonar ? 1 : 0,
+        pacient.dadesPacient.enfisema ? 1 : 0, pacient.dadesPacient.refluxGastroesofagic ? 1 : 0,
+        pacient.dadesPacient.apneaSon ? 1 : 0, pacient.dadesPacient.carcinomaBroncogenic ? 1 : 0,
     ).lastInsertRowid;
 }
 
@@ -107,7 +107,6 @@ function getPacientById(id) {
             consumTabac: pacientRow.HabitsToxics_ConsumTabac,
             exposicioFum: pacientRow.HabitsToxics_ExposicioFum
         },
-        antecedents: pacientRow.Antecedents,
         DLCO: pacientRow.DLCO,
         FVC: pacientRow.FVC,
         desaturacioPM6M: pacientRow.DesaturacioPM6M,
@@ -132,46 +131,6 @@ function getAllPacients() {
     const query = `SELECT * FROM Pacient;`;
     return db.prepare(query).all();
 }
-// Obtenir tots els pacients
-function getAllPacients() {
-    const query = `
-        SELECT * FROM Pacient;
-    `;
-    return db.prepare(query).all();
-}
-
-// Obtenir un pacient per ID
-function getPacientById(id) {
-    const query = `
-        SELECT * FROM Pacient WHERE id = ?;
-    `;
-    return db.prepare(query).get(id);
-}
-
-// Actualitzar un pacient
-function updatePacient(pacient) {
-    const query = `
-        UPDATE Pacient
-        SET name = ?, cognom1 = ?, cognom2 = ?,
-        WHERE id = ?;
-    `;
-    const statement = db.prepare(query);
-    const result = statement.run(pacient.name, pacient.cognom1, pacient.cognom2, pacient.id);
-    return result.changes > 0;
-}
-
-// Eliminar un pacient per ID
-function deletePacient(id) {
-    const query = `
-        DELETE FROM Pacient WHERE id = ?;
-    `;
-    const statement = db.prepare(query);
-    return statement.run(id).changes > 0;
-}
-
-// Crear la taula i inserir pacients de mostra
-createTable();
-insertSamplePacients();
 
 function updatePacient(pacient) {
     const query = `
@@ -182,7 +141,7 @@ function updatePacient(pacient) {
             SignesAlarma_FebreAltaODesaturacio = ?, SignesAlarma_IncrementDeRespiracions = ?,
             SignesAlarma_OfegEnReposOCianosi = ?, MalaltiesPrevis = ?, AltresCroniques = ?,
             MedicacioHabit_Antifibrotics = ?, MedicacioHabit_Immunosupressors = ?, MedicacioHabit_Oxigenoterapia = ?,
-            HabitsToxics_ConsumTabac = ?, HabitsToxics_ExposicioFum = ?, Antecedents = ?,
+            HabitsToxics_ConsumTabac = ?, HabitsToxics_ExposicioFum = ?,
             DLCO = ?, FVC = ?, DesaturacioPM6M = ?, HipertensioPulmonar = ?, Enfisema = ?,
             RefluxGastroesofagic = ?, ApneaSon = ?, CarcinomaBroncogenic = ?
         WHERE id = ?;
@@ -199,7 +158,7 @@ function updatePacient(pacient) {
         pacient.dadesPacient.malaltiesPrevis, pacient.dadesPacient.altresCroniques,
         pacient.dadesPacient.medicacioHabit.antifibrotics, pacient.dadesPacient.medicacioHabit.immunosupressors,
         pacient.dadesPacient.medicacioHabit.oxigenoterapia, pacient.dadesPacient.habitsToxics.consumTabac,
-        pacient.dadesPacient.habitsToxics.exposicioFum, pacient.dadesPacient.antecedents,
+        pacient.dadesPacient.habitsToxics.exposicioFum,
         pacient.dadesPacient.DLCO, pacient.dadesPacient.FVC, pacient.dadesPacient.desaturacioPM6M,
         pacient.dadesPacient.hipertensioPulmonar, pacient.dadesPacient.enfisema,
         pacient.dadesPacient.refluxGastroesofagic, pacient.dadesPacient.apneaSon,
@@ -213,5 +172,8 @@ function deletePacient(id) {
     const statement = db.prepare(query);
     return statement.run(id).changes > 0;
 }
+// Crear la taula i inserir pacients de mostra
+createTable();
+
 
 export { createTable, insertPacient, getPacientById, getAllPacients, updatePacient, deletePacient };

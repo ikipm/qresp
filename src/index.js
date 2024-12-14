@@ -23,7 +23,19 @@ app.use(indexRoutes);
 
 // Start the database creating (if it doesn't exist) the table Pacient
 createTable();
-var persona = new Pacient(null, "a", "b", "c", 20);
+// Crear un pacient nou amb valors per defecte
+const persona = new Pacient(null, "a", "b", "c", 20);
+persona.omplirDadesPacient({
+    PresenciaDeFebre: true,
+    SignesAlarmaPresents: {
+        IncrementDeRespiracions: true
+    },
+    medicacioHabit: {
+        antifibrotics: true
+    },
+    edat: 45
+});
+
 console.log(persona);
 insertPacient(persona);
 console.log(getAllPacients());
