@@ -1,32 +1,129 @@
 <style>
-  body { display: flex; justify-content: center; align-items: flex-start;
-  min-height: 100vh; margin: 0; background-color: #f9f9f9; padding-top: 20px; }
-  .card { width: 600px; height: 300px; background-color: #fff9c4; border: 5px
-  solid black; border-radius: 15px; padding: 20px; box-shadow: 0 4px 8px rgba(0,
-  0, 0, 0.2); font-family: "Arial", sans-serif; } .card .photo { width: 182px;
-  height: 224px; border: 3px solid black; background-color: white;
-  margin-bottom: 10px; float: left; margin-right: 0px; border-radius: 10px;
-  position: relative; top: 20px; } .card .details { float: left; width:
-  calc(100% - 200px); position: relative; left: 0px; } .card .details p {
-  margin: 30px; } .card .details p span { font-weight: bold; text-decoration:
-  underline; } .card .checkmark { position: relative; bottom: -250px; right:
-  -550px; width: 40px; height: 40px; border: 5px solid black; border-radius:
-  4px; transform: rotate(45deg); border-left: none; border-top: none;
-  border-radius: 10px; }
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin-right: 0px;
+        background-color: #f9f9f9;
+        padding-top: 0px;
+        flex-direction: column;
+    }
+    .card {
+        width: 600px;
+        height: 300px;
+        background-color: #fff9c4;
+        border: 5px solid black;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-family: "Arial", sans-serif;
+    }
+    .card .photo {
+        width: 182px;
+        height: 224px;
+        border: 3px solid black;
+        background-color: white;
+        margin-bottom: 10px;
+        float: left;
+        margin-right: 0px;
+        border-radius: 10px;
+        position: relative;
+        top: 20px;
+    }
+    .card .details {
+        float: left;
+        width: calc(100% - 200px);
+        position: relative;
+        left: 0px;
+    }
+    .card .details p {
+        margin: 30px;
+    }
+    .card .details p span {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+    .diagnostic {
+        width: 600px;
+        height: 300px;
+        background-color: #f1753c;
+        border: 5px solid black;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        font-family: "Arial", sans-serif;
+        margin-top: 20px;
+    }
+    .diagnostic .photo {
+        width: 182px;
+        height: 224px;
+        border: 3px solid black;
+        background-color: white;
+        margin-bottom: 10px;
+        float: left;
+        margin-right: 0px;
+        border-radius: 10px;
+        position: relative;
+        top: 20px;
+    }
+    .diagnostic .details {
+        float: left;
+        width: calc(100% - 200px);
+        position: relative;
+        left:70px;
+    }
+    .diagnostic .details p {
+        margin-top: 130px;
+    }
+    .diagnostic .details p span {
+        font-weight: bold;
+    }
+    .diagnostic .checkmark {
+        position: relative;
+        bottom: -45px;
+        right: -380px;
+        width: 40px;
+        height: 40px;
+        border: 5px solid black;
+        border-radius: 4px;
+        transform: rotate(45deg);
+        border-left: none;
+        border-top: none;
+        border-radius: 10px;
+        cursor: pointer;
+    }
 </style>
-
 <div class="card">
-  <div class="photo"></div>
-  <div class="details">
-    <p><span>{{patient.name}}, {{patient.cognom1}} {{patient.cognom2}}</span></p>
-    <p>Edat: <span>{{patient.dadesPacient.edat}}</span></p>
-    <p><span>Condició mèdica:</span></p>
-    <p><span>Estat Actual:</span> estat actual</p>
-    <p><span>Metge Encarregat:</span> nom</p>
-    <p><span>Centre de Referència:</span> lloc</p>
-  </div>
-  <!--<div class="checkmark"></div>-->
+    <div class="photo"></div>
+    <div class="details">
+        <p><span>{{patient.cognom1}} {{patient.cognom2}}, {{patient.name}}</span></p>
+        <p><span>Edat:</span> {{person.dadesPacient.edat}}</p>
+        <p><span>Condició mèdica:</span></p>
+        <p><span>Estat Actual:</span> estat actual</p>
+        <p><span>Metge Encarregat:</span> ROsendo Rey</p>
+        <p><span>Centre de Referència:</span> lloc</p>
+    </div>
+</div>
+<div class="diagnostic">
+    <div class="photo"></div>
+    <div class="details">
+        <p style="font-size: 45px"><span>DIAGNÒSTIC</span></p>
+    </div>
+    <button class="checkmark" onclick="lol()"></button>
+</div>
+<div id="diagnosticInfo" style="display: none;">
+    <h1>diagnostic</h1>
 </div>
 
-<h2>Diagnostic:</h2>
-<p>{{diagnostic}}</p>
+<script>
+        function lol(){
+            var info = document.getElementById("diagnosticInfo")
+            if(info.style.display == "block") {
+                info.style.display = "none"
+            }
+            else {
+                info.style.display = "block"
+            }
+        }
+    </script>
