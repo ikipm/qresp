@@ -77,4 +77,4 @@ const CreateQRCode = async (req, res) =>{
       }
 }
 
-export { CreateQRCode, RenderPatientInfo, UpdatePacientView, saveUpdatePacient };
+export { CreateQRCode, RenderPatientInfo, saveUpdatePacient };
