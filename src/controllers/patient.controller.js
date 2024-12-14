@@ -17,6 +17,20 @@ const RenderPatientInfo = async (req, res) => {
       }
 }
 
+const UpdatePacientView = async (req, res) => {
+  try {
+    const patient = await getPacientById(req.params.id);
+    if (patient) {
+      res.render('updatePatient', { patient });
+    } else {
+      res.status(404).send('Patient not found');
+    }
+  } catch (err) {
+    console.error('Error getting pacients:', err);
+    res.status(500).send('Server internal error');
+  }
+}
+
 const saveUpdatePacient = async (req, res) => {
   try {
     const updatedPacient = {
@@ -77,4 +91,4 @@ const CreateQRCode = async (req, res) =>{
       }
 }
 
-export { CreateQRCode, RenderPatientInfo, saveUpdatePacient };
+export { CreateQRCode, RenderPatientInfo, UpdatePacientView, saveUpdatePacient };
