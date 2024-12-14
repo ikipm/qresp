@@ -386,7 +386,6 @@ function getDiagnosticEXTRA(Pacient){
     // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
         diagnostic += "Diagnòstic: Sospita d'infecció. Recomanat tractament antibiòtic.\n";
-        return diagnostic;
     }
 
     // [2] Ofeg i/o tos
