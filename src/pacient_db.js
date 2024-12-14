@@ -1,4 +1,4 @@
-const Database = require('better-sqlite3');
+import Database from 'better-sqlite3';
 
 // Inicialitzar la connexió amb la base de dades
 const db = new Database('database.db');
