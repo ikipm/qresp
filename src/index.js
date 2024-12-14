@@ -13,6 +13,8 @@ const port = 3000
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+app.use(express.urlencoded({ extended: true }));
+
 // Set up Handlebars as the view engine
 app.engine('hbs', engine({ extname: '.hbs' }))
 app.set('view engine', 'hbs')
@@ -20,8 +22,6 @@ app.set("views", path.join(__dirname, "views"));
 
 // Set up the router
 app.use(indexRoutes);
-
-app.use(express.urlencoded({ extended: true }));
 
 // Start the database creating (if it doesn't exist) the table Pacient
 createTable();

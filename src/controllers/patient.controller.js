@@ -6,8 +6,11 @@ const RenderPatientInfo = async (req, res) => {
     try {
         const patient = await getPacientById(req.params.id);
         if (patient) {
+          
           const diagnostic = getDiagnostic(patient.dadesPacient);
-          res.render('patient', { patient, diagnostic });
+          const url = `http://localhost:3000/patient/${patient.id}`;
+          const qrCodeImage = await qrcode.toDataURL(url);
+          res.render('patient', { patient, qrCodeImage, diagnostic });
         }	else {
           res.status(404).send('Patient not found');
         }
@@ -82,7 +85,7 @@ const saveUpdatePacient = async (req, res) => {
 
 const CreateQRCode = async (req, res) =>{
     try {
-        const url = "http://localhost:3000/patient/" + req.param.id;
+        const url = "http://localhost:3000/patient/" + req.params.id;
         const qrCodeImage = await qrcode.toDataURL(url);
         res.send(`<img src="${qrCodeImage}" alt="QR Code"/>`);
       } catch (err) {
