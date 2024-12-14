@@ -158,7 +158,7 @@ function getDiagnosticNHf(Pacient) {
     }
 
     // [6] Exposició ambiental o laboral
-    if (dadesPacient.MalaltiesPrevis) {
+    if (dadesPacient.malaltiesPrevis) {
         diagnostic += "Es consideraran antecedents d'exposició ambiental o laboral (fongs, pols d'aus, etc.) per ajustar el tractament.\n";
     }
 
