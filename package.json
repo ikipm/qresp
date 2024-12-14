@@ -18,9 +18,12 @@
   "homepage": "https://github.com/ikipm/qresp#readme",
   "type": "module",
   "dependencies": {
+    "axios": "^1.7.9",
     "better-sqlite3": "^11.7.0",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-handlebars": "^8.0.1",
+    "openai": "^4.76.3",
     "qrcode": "^1.5.4"
   }
 }

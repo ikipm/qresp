@@ -1,3 +1,13 @@
+import { Configuration, OpenAIApi } from "openai";
+import dotenv from "dotenv";
+
+dotenv.config({ path: "../claus.env" }); // Ajusta el camí si el fitxer està a l'arrel
+
+const configuration = new Configuration({
+    apiKey: process.env.OPENAI_API_KEY, // Utilitza la clau d'entorn
+});
+const openai = new OpenAIApi(configuration);
+
 function getDiagnostic(dadesPacient) {
     var diagnostic = "";
 
@@ -61,4 +71,52 @@ function getDiagnostic(dadesPacient) {
     return diagnostic;
 }
 
-export { getDiagnostic };
+async function generarPromptIA(pacient) {
+    // Construeix el prompt basat en les dades del pacient
+    const prompt = `
+Dades del pacient:
+Nom: ${pacient.name} ${pacient.cognom1} ${pacient.cognom2 || ''}
+Edat: ${pacient.edat || 'No especificada'}
+
+Història clínica:
+- Presència de febre: ${pacient.dadesPacient.PresenciaDeFebre ? 'Sí' : 'No'}
+- Ofeg: ${pacient.dadesPacient.ofeg ? 'Sí' : 'No'}
+- Increment de mucositat i congestió nasal o dolor de gola: ${pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola ? 'Sí' : 'No'}
+- Increment de mucositat i febre: ${pacient.dadesPacient.IncrementMucositatIFebre ? 'Sí' : 'No'}
+- Dolor toràcic: ${pacient.dadesPacient.DolorToracic ? 'Sí' : 'No'}
+- Xiulets: ${pacient.dadesPacient.Xiulets ? 'Sí' : 'No'}
+
+Signes d'alarma:
+- Febre alta o desaturació: ${pacient.dadesPacient.SignesAlarmaPresents.FebreAltaODesaturacio ? 'Sí' : 'No'}
+- Increment de respiracions: ${pacient.dadesPacient.SignesAlarmaPresents.IncrementDeRespiracions ? 'Sí' : 'No'}
+- Ofeg en repòs o cianosi: ${pacient.dadesPacient.SignesAlarmaPresents.OfegEnReposOCianosi ? 'Sí' : 'No'}
+
+Altres factors:
+- Malalties prèvies: ${pacient.dadesPacient.malaltiesPrevis ? 'Sí' : 'No'}
+- Altres cròniques: ${pacient.dadesPacient.altresCroniques ? 'Sí' : 'No'}
+- Consum de tabac: ${pacient.dadesPacient.habitsToxics.consumTabac ? 'Sí' : 'No'}
+- DLCO (%): ${pacient.dadesPacient.DLCO || 'No especificat'}
+- FVC (%): ${pacient.dadesPacient.FVC || 'No especificat'}
+
+Proporciona una anàlisi clínica general i possibles recomanacions per aquest pacient, tenint en compte els símptomes, signes d'alarma i factors associats.
+    `;
+
+    try {
+        // Enviar la consulta a la API d'OpenAI
+        const completion = await openai.createChatCompletion({
+            model: 'gpt-4', // Pots utilitzar 'gpt-3.5-turbo' si és preferible
+            messages: [
+                { role: 'system', content: 'Ets un assistent mèdic expert.' },
+                { role: 'user', content: prompt }
+            ],
+        });
+
+        // Retorna la resposta generada
+        return completion.data.choices[0].message.content;
+    } catch (error) {
+        console.error('Error en contactar amb la API de ChatGPT:', error.response?.data || error.message);
+        throw new Error('No s’ha pogut obtenir una resposta de ChatGPT.');
+    }
+}
+
+export { getDiagnostic, generarPromptIA};
