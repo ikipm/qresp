@@ -33,53 +33,6 @@ var dadesPacient = {
 };
 
 var diagnostic = diagnosticF(dadesPacient);
-var tractament = tractamentF(dadesPacient);
-
-function tractamentF(dades){
-
-    let diagnostic = "";
-    let tractament = [];
-
-    // **Valoració inicial a urgències**
-    if (dadesPacient.PresenciaDeFebre) {
-        diagnostic = "Dx concret: Pneumònia";
-
-        // **Classificació segons immunitat**
-         if (dadesPacient.medicacioHabit.immunosupressors == false) {
-            tractament.push(
-                "Antibiòtics: Cefalosporina 3a generació",
-                "Levofloxacina 500 mg/24h"
-            );
-        }
-    } else if (dadesPacient.TEP) {
-        diagnostic = "Sospita TEP";
-        tractament.push("Realitzar ANGIO-TACAR + D-Dímer");
-    } else {
-        diagnostic = "No Dx concret";
-        tractament.push("Valoració de la parènquima amb TACAR");
-    }
-
-    // **Teràpies generals**
-    if (dadesPacient.medicacioHabit.oxigenoterapia) {
-        tractament.push("Oxigenoteràpia ajustant FiO2 a SpO2 > 92%");
-    }
-
-    if (dadesPacient.hipotensio) {
-        tractament.push("Morfina: 2.5-5mg s.c. cada 8 hores");
-    }
-
-    if (dadesPacient.edat > 65) {
-        tractament.push(
-            "Metilprednisolona (1 mg/kg/dia)",
-            "N-Acetilcisteïna 600 mg/8h (protecció pulmonar)"
-        );
-    }
-
-    // **Resultat final**
-    return {
-        tractament: tractament
-    };
-}
 
 function diagnosticF(dades){
     var diagnostic = "";
