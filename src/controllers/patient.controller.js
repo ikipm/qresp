@@ -1,12 +1,14 @@
 import qrcode from 'qrcode';
 import {createTable, insertPacient, getAllPacients, getPacientById, updatePacient, deletePacient} from '../pacient_db.js';
+import { getDiagnostic } from '../algoritme.js';
 
 const RenderPatientInfo = async (req, res) => {
   console.log("This is the param: " + req.params.id);
     try {
         const patient = await getPacientById(req.params.id);
         if (patient) {
-          res.render('patient', { patient });
+          const diagnostic = getDiagnostic(patient.dadesPacient);
+          res.render('patient', { patient, diagnostic });
         }	else {
           res.status(404).send('Patient not found');
         }
@@ -18,7 +20,7 @@ const RenderPatientInfo = async (req, res) => {
 
 const CreateQRCode = async (req, res) =>{
     try {
-        const url = "http://localhost:3000/patient/1"; // Here we should use the patient ID
+        const url = "http://localhost:3000/patient/" + req.param.id;
         const qrCodeImage = await qrcode.toDataURL(url);
         res.send(`<img src="${qrCodeImage}" alt="QR Code"/>`);
       } catch (err) {

@@ -132,6 +132,46 @@ function getAllPacients() {
     const query = `SELECT * FROM Pacient;`;
     return db.prepare(query).all();
 }
+// Obtenir tots els pacients
+function getAllPacients() {
+    const query = `
+        SELECT * FROM Pacient;
+    `;
+    return db.prepare(query).all();
+}
+
+// Obtenir un pacient per ID
+function getPacientById(id) {
+    const query = `
+        SELECT * FROM Pacient WHERE id = ?;
+    `;
+    return db.prepare(query).get(id);
+}
+
+// Actualitzar un pacient
+function updatePacient(pacient) {
+    const query = `
+        UPDATE Pacient
+        SET name = ?, cognom1 = ?, cognom2 = ?,
+        WHERE id = ?;
+    `;
+    const statement = db.prepare(query);
+    const result = statement.run(pacient.name, pacient.cognom1, pacient.cognom2, pacient.id);
+    return result.changes > 0;
+}
+
+// Eliminar un pacient per ID
+function deletePacient(id) {
+    const query = `
+        DELETE FROM Pacient WHERE id = ?;
+    `;
+    const statement = db.prepare(query);
+    return statement.run(id).changes > 0;
+}
+
+// Crear la taula i inserir pacients de mostra
+createTable();
+insertSamplePacients();
 
 function updatePacient(pacient) {
     const query = `

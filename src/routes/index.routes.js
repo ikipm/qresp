@@ -7,6 +7,6 @@ const router = Router();
 // Routes
 router.get('/', RenderHome);
 router.get('/patient/:id', RenderPatientInfo);
-router.get('/create-qr', CreateQRCode);
+router.get('/create-qr/:id', CreateQRCode);
 
 export default router;
