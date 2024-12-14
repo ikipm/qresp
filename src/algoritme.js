@@ -11,64 +11,87 @@ const openai = new OpenAIApi(configuration);
 function getDiagnostic(dadesPacient) {
     var diagnostic = "";
 
-    // **Diagnòstic principal basat en els símptomes**
+
+    let diagnostic = "";
+
+    // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
-        diagnostic = "Realitzar analítica bàsica (hemograma, PCR).\nSol·licitar cultius (sang i esput) si sospita d'infecció.\nTomografia (TCAR) per descartar pneumònia/inflamació aguda.";
-    } else if (dadesPacient.IncrementMucositatICongestioNasalDolorDeGola) {
-        diagnostic = "Sospita d'infecció respiratòria alta (viral o bacteriana).\nTractament: hidratació, mucolítics, i antibiòtics si hi ha sospita bacteriana.\nSi no hi ha resposta, considerar TCAR i/o broncoscòpia.";
-    } else if (dadesPacient.IncrementMucositatIFebre) {
-        diagnostic = "Sospita d'infecció pulmonar.\nIniciar antibiòtics empírics (segons protocols locals).\nProves complementàries: hemocultius, gasometria arterial i radiografia/TCAR.";
-    } else if (dadesPacient.DolorToracic) {
-        diagnostic = "Avaluar possibles causes: Embolisme pulmonar: Sol·licitar D-dímer i TC amb contrast.\nExacerbació de fibrosi pulmonar: Confirmar amb TCAR i proves funcionals.";
-    } else if (dadesPacient.Xiulets) {
-        diagnostic = "Indicatiu d'obstrucció bronquial o asma superposada.\nTractament: broncodilatadors, excepte en MPID fibròtica sense sibilants (evitar).";
+        diagnostic += "Diagnòstic: Sospita d'infecció. Recomanat tractament antibiòtic.\n";
+        return diagnostic;
     }
 
-    // **Avaluació dels signes d'alarma**
-    if (dadesPacient.SignesAlarmaPresents.FebreAltaODesaturacio) {
-        diagnostic += "\nOxigenoteràpia immediata. Proves urgents:\ngasometria arterial,\nradiografia de tòrax/TCAR.";
+    // [2] Ofeg i/o tos
+    if (dadesPacient.ofeg) {
+        if (dadesPacient.IncrementMucositatIFebre) {
+            diagnostic += "Diagnòstic: Sospita d'infecció pulmonar. Tractament empíric amb antibiòtics.\n";
+        } else if (dadesPacient.DolorToracic) {
+            diagnostic += "Diagnòstic: Avaluar embolisme pulmonar o exacerbació de fibrosi pulmonar.\n";
+        } else if (dadesPacient.Xiulets) {
+            diagnostic += "Diagnòstic: Indicatiu d'obstrucció bronquial o asma superposada. Tractament amb broncodilatadors.\n";
+        }
+        return diagnostic;
     }
-    if (dadesPacient.SignesAlarmaPresents.IncrementDeRespiracions) {
-        diagnostic += "\nTractament urgent per estabilitzar respiració. Considerar ventilació no invasiva (VNI) en casos severs.";
+
+    // [3] Signes d'alarma
+    if (dadesPacient.SignesAlarmaPresents.FebreAltaODesaturacio) {
+        diagnostic += "Signes d'alarma: Presència de febre alta o desaturació. Oxigenoteràpia immediata i proves urgents.\n";
     }
     if (dadesPacient.SignesAlarmaPresents.OfegEnReposOCianosi) {
-        diagnostic += "\nEmergència mèdica: inici immediat d'oxigenoteràpia. Derivació urgent a UCI si no hi ha millora ràpida.";
+        diagnostic += "Signes d'alarma: Cianosi i ofeg en repòs. Emergència mèdica: inici d'oxigenoteràpia i derivació urgent a UCI.\n";
+    }
+    if (dadesPacient.SignesAlarmaPresents.IncrementDeRespiracions) {
+        diagnostic += "Signes d'alarma: Increment de respiracions. Tractament urgent amb ventilació no invasiva (VNI).\n";
     }
 
-    // **Factors pronòstics**
-    if (dadesPacient.DLCO < 40) {
-        diagnostic += "\nDLCO baix (<40%). Alt risc de mortalitat. Tractament intensiu necessari.";
+    // [4] Factors pronòstics i complicacions
+    if (dadesPacient.DLCO !== null && dadesPacient.DLCO < 40) {
+        diagnostic += "DLCO baixa (<40%): Alt risc de mortalitat. Necessari seguiment intensiu.\n";
     }
-    if (dadesPacient.FVC < 50) {
-        diagnostic += "\nFVC reduïda (<50%). Progressió avançada de la malaltia.";
+    if (dadesPacient.FVC !== null && dadesPacient.FVC < 50) {
+        diagnostic += "FVC reduïda (<50%): Malaltia avançada. Necessari ajustar tractament.\n";
     }
     if (dadesPacient.desaturacioPM6M) {
-        diagnostic += "\nDesaturació significativa durant la prova de marxa de 6 minuts. Alta probabilitat de complicacions.";
+        diagnostic += "Desaturació significativa durant la prova de marxa de 6 minuts: Alta probabilitat de complicacions.\n";
     }
-
-    // **Complicacions i comorbiditats**
     if (dadesPacient.hipertensioPulmonar) {
-        diagnostic += "\nPresència de hipertensió pulmonar. Ajustar tractament segons recomanacions específiques.";
+        diagnostic += "Presència de hipertensió pulmonar. Requereix tractament específic.\n";
     }
     if (dadesPacient.enfisema) {
-        diagnostic += "\nEnfisema detectat. Major risc de hipertensió pulmonar precoç.";
+        diagnostic += "Enfisema detectat. Augment del risc de complicacions cardiorespiratòries.\n";
     }
     if (dadesPacient.refluxGastroesofagic) {
-        diagnostic += "\nTractar reflux gastroesofàgic per prevenir microaspiracions.";
+        diagnostic += "Tractar el reflux gastroesofàgic per reduir microaspiracions.\n";
     }
     if (dadesPacient.apneaSon) {
-        diagnostic += "\nApnees del son. Indicar tractament amb CPAP si és necessari.";
+        diagnostic += "Apnees del son. Indicar CPAP si cal.\n";
     }
     if (dadesPacient.carcinomaBroncogenic) {
-        diagnostic += "\nCarcinoma broncogènic detectat. Prioritzar tractament oncològic.";
+        diagnostic += "Presència de carcinoma broncogènic. Prioritzar tractament oncològic.\n";
     }
 
-    // **Avaluació de l'edat**
-    if (dadesPacient.edat > 70) {
-        diagnostic += "\nPacient d'edat avançada. Adaptar tractament segons fragilitat.";
+    // [5] Edat del pacient
+    if (dadesPacient.edat !== null && dadesPacient.edat > 70) {
+        diagnostic += "Pacient d'edat avançada. Adaptar el tractament segons la fragilitat.\n";
     }
 
-    return diagnostic;
+    // [6] Medicació i malalties prèvies
+    if (dadesPacient.malaltiesPrevis) {
+        diagnostic += "Es consideraran antecedents de malalties pulmonars en l'avaluació.\n";
+    }
+    if (dadesPacient.altresCroniques) {
+        diagnostic += "Tenir en compte malalties cròniques associades (ex. hipertensió pulmonar, diabetis).\n";
+    }
+    if (dadesPacient.medicacioHabit.antifibrotics) {
+        diagnostic += "Monitoritzar l'eficàcia i adherència del tractament antifibròtic.\n";
+    }
+    if (dadesPacient.medicacioHabit.immunosupressors) {
+        diagnostic += "Avaluar risc d'infecció oportunista a causa de la immunosupressió.\n";
+    }
+    if (dadesPacient.medicacioHabit.oxigenoterapia) {
+        diagnostic += "Ajustar oxigenoteràpia segons les necessitats actuals.\n";
+    }
+
+    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar.";
 }
 
 async function generarPromptIA(pacient) {
