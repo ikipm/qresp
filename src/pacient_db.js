@@ -11,6 +11,7 @@ function createTable() {
             name TEXT NOT NULL,
             cognom1 TEXT NOT NULL,
             cognom2 TEXT,
+            enfermetat TEXT,
             PresenciaDeFebre BOOLEAN,
             Ofeg BOOLEAN,
             IncrementMucositatICongestioNasalDolorDeGola BOOLEAN,
@@ -44,7 +45,7 @@ function createTable() {
 function insertPacient(pacient) {
     const query = `
         INSERT INTO Pacient (
-            name, cognom1, cognom2,
+            name, cognom1, cognom2, enfermetat,
             PresenciaDeFebre, Ofeg, IncrementMucositatICongestioNasalDolorDeGola,
             IncrementMucositatIFebre, DolorToracic, Xiulets,
             SignesAlarma_FebreAltaODesaturacio, SignesAlarma_IncrementDeRespiracions,
@@ -53,11 +54,11 @@ function insertPacient(pacient) {
             HabitsToxics_ConsumTabac, HabitsToxics_ExposicioFum, Edat,
             DLCO, FVC, DesaturacioPM6M, HipertensioPulmonar, Enfisema, RefluxGastroesofagic,
             ApneaSon, CarcinomaBroncogenic
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     `;
     const statement = db.prepare(query);
     return statement.run(
-        pacient.name, pacient.cognom1, pacient.cognom2,
+        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfemetat,
         pacient.dadesPacient.PresenciaDeFebre ? 1 : 0, pacient.dadesPacient.ofeg ? 1 : 0,
         pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola ? 1 : 0,
         pacient.dadesPacient.IncrementMucositatIFebre ? 1 : 0,
@@ -123,6 +124,7 @@ function getPacientById(id) {
         name: pacientRow.name,
         cognom1: pacientRow.cognom1,
         cognom2: pacientRow.cognom2,
+        enfemetat: pacientRow.enfemetat,
         edat: pacientRow.Edat,
         dadesPacient
     };
@@ -136,7 +138,7 @@ function getAllPacients() {
 function updatePacient(pacient) {
     const query = `
         UPDATE Pacient
-        SET name = ?, cognom1 = ?, cognom2 = ?, Edat = ?,
+        SET name = ?, cognom1 = ?, cognom2 = ?, enfermetat = ?, Edat = ?,
             PresenciaDeFebre = ?, Ofeg = ?, IncrementMucositatICongestioNasalDolorDeGola = ?,
             IncrementMucositatIFebre = ?, DolorToracic = ?, Xiulets = ?,
             SignesAlarma_FebreAltaODesaturacio = ?, SignesAlarma_IncrementDeRespiracions = ?,
@@ -149,7 +151,7 @@ function updatePacient(pacient) {
     `;
     const statement = db.prepare(query);
     const result = statement.run(
-        pacient.name, pacient.cognom1, pacient.cognom2, pacient.edat,
+        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfemetat, pacient.edat,
         pacient.dadesPacient.PresenciaDeFebre, pacient.dadesPacient.ofeg,
         pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola, pacient.dadesPacient.IncrementMucositatIFebre,
         pacient.dadesPacient.DolorToracic, pacient.dadesPacient.Xiulets,
@@ -182,7 +184,7 @@ function insertSamplePacients() {
         console.log('Inserint pacients de mostra, la base de dades està buida.');
 
         const pacientsDeMostra = [
-            new Pacient(null, 'Joan', 'Garcia', 'Pérez', 45, {
+            new Pacient(null, 'Joan', 'Garcia', 'Pérez', 'enfermetat', 45, {
                 PresenciaDeFebre: true,
                 ofeg: false,
                 IncrementMucositatICongestioNasalDolorDeGola: false,
@@ -214,7 +216,7 @@ function insertSamplePacients() {
                 apneaSon: false,
                 carcinomaBroncogenic: false
             }),
-            new Pacient(null, 'Maria', 'Lopez', 'Martínez', 37, {
+            new Pacient(null, 'Maria', 'Lopez', 'Martínez', 'enfermetat', 37, {
                 PresenciaDeFebre: false,
                 ofeg: true,
                 IncrementMucositatICongestioNasalDolorDeGola: true,
