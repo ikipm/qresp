@@ -1,4 +1,5 @@
 <form action="/patient/edit/{{patient.id}}" method="POST">
+    <h1>Update Patient Info</h1>
     <div>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="{{patient.name}}" placeholder="{{patient.nameInput}}" required>
@@ -30,6 +31,9 @@
         <label for="centreSanitari">Centre de Referència:</label>
         <input type="text" id="centreSanitari" name="centreSanitari" value="{{patient.centreSanitari}}" placeholder="{{patient.centreSanitari}}" required>
     </div>
+    </br>
+    </br>
+    <h1>Update Diagnostic Info</h1>
     <div>
         <label for="PresenciaDeFebre">Presencia De Febre:</label>
         <input type="checkbox" id="PresenciaDeFebre" name="PresenciaDeFebre" {{#if patient.dadesPacient.PresenciaDeFebre}}checked{{/if}}>
