@@ -26,7 +26,7 @@ const AddPatientView = async (req, res) => {
 
 const AddPatient = async (req, res) => {
   try {
-    const patient = new Pacient(null, req.body.name, req.body.cognom1, req.body.cognom2, req.body.malaltia, parseInt(req.body.edat)); 
+    const patient = new Pacient(null, req.body.name, req.body.cognom1, req.body.cognom2, req.body.malaltia, parseInt(req.body.edat), parseInt(req.body.estatActual), req.body.metge, req.body.centreSanitari); 
     await insertPacient(patient);
     res.redirect('/patient/' + patient.id);
   } catch (err) {
@@ -58,9 +58,12 @@ const saveUpdatePacient = async (req, res) => {
       cognom2: req.body.cognom2,
       edat: parseInt(req.body.edat),
       enfermetat: req.body.malaltia,
+      estatActual: parseInt(req.body.estatActual),
+      metge: req.body.metge,
+      centreSanitari: req.body.centreSanitari,
       dadesPacient: {
         PresenciaDeFebre: req.body.PresenciaDeFebre? 1: 0,
-        Ofeg: req.body.Ofeg? 1: 0,
+        ofeg: req.body.Ofeg? 1: 0,
         IncrementMucositatICongestioNasalDolorDeGola: req.body.IncrementMucositatICongestioNasalDolorDeGola ? 1: 0,
         IncrementMucositatIFebre: req.body.IncrementMucositatIFebre? 1: 0,
         DolorToracic: req.body.DolorToracic? 1: 0,
