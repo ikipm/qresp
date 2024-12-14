@@ -110,7 +110,6 @@ function getDiagnosticNHf(Pacient) {
     // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
         diagnostic += "Diagnòstic: Exacerbació de Neumonitis per Hipersensibilitat (NH) amb sospita d'infecció superposada. Recomanat tractament antibiòtic empíric.\n";
-        return diagnostic;
     }
 
     // [2] Ofeg i/o tos
