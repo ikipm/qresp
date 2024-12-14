@@ -104,8 +104,6 @@ function getDiagnosticFPI(Pacient) {
     return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar.";
 }
 function getDiagnosticNHf(Pacient) {
-    var diagnostic = "";
-    var dadesPacient = Pacient.dadesPacient;
 
     var diagnostic = [];
     var dadesPacient = Pacient.dadesPacient;
