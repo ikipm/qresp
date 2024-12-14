@@ -100,7 +100,7 @@
         <p><span>{{patient.cognom1}} {{patient.cognom2}}, {{patient.name}}</span></p>
         <p><span>Edat:</span> {{patient.edat}}</p>
         <p><span>Condició mèdica:</span>{{patient.enfermetat}}</p>
-        <p><span>Estat Actual:</span> {{patient.estatActual}}</p>
+        <p><span>Estat Actual:</span> {{patient.estatActual}}/6</p>
         <p><span>Metge Encarregat:</span> {{patient.metge}}</p>
         <p><span>Centre de Referència:</span> {{patient.centreSanitari}}</p>
     </div>
@@ -109,6 +109,10 @@
     <div class="photo"></div>
     <div class="details">
         <a style="font-size: 45px" href="/patient/edit/{{patient.id}}"><span>DIAGNÒSTIC</span></a>
-        <p>{{diagnostic}}</p>
+    <ul>
+        {{#each diagnostic}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
     </div>
 </div>
