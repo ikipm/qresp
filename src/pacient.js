@@ -14,7 +14,7 @@ class DadesPacient {
         };
 
         this.malaltiesPrevis = null;
-        this.altresCròniques = null;
+        this.altresCroniques = null;
 
         this.medicacioHabit = {
             antifibrotics: null,
@@ -27,7 +27,7 @@ class DadesPacient {
             exposicioFum: null
         };
 
-        this.antacadents = null;
+        this.antecedents = null;
         this.edat = null;
         this.DLCO = null; // Difusio del monòxid de carboni (%)
         this.FVC = null;  // Capacitat vital forçada (%)
@@ -55,3 +55,6 @@ class Pacient {
         Object.assign(this.dadesPacient, dades);
     }
 }
+
+
+export {Pacient}

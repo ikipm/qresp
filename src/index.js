@@ -23,7 +23,9 @@ app.use(indexRoutes);
 
 // Start the database creating (if it doesn't exist) the table Pacient
 createTable();
-fillTable();
+var persona = new Pacient(null, "a", "b", "c", 20);
+console.log(persona);
+insertPacient(persona);
 console.log(getAllPacients());
 
 app.listen(port, () => {
