@@ -1,5 +1,7 @@
 # Repo BitsxMarato 24
 
+https://miro.com/welcomeonboard/dndoemxvU3RnS3RwOTBVeTJoUEdSeUhrVXlORHlpRUZxS3J4UlZHR0VWWVRSNVlxbVRhV3pqRmY1UlBZcWpONXpwN0hBMm5KbEdNVVlNWUsvRW4rWVJPbHd1NEdtN2N5V1l1UUdCYTBmT29BTW5DckdQdzg0VlpIa1JlcmducFUhZQ==?share_link_id=429029669480
+
 ## Structure (Model, View, Controller)
 The project is divided in views, controllers and routes.
 The views contain all the front-end files, where the page is created.
