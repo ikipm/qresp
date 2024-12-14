@@ -98,7 +98,7 @@
     <div class="photo"><img src="{{qrCodeImage}}" alt="QR Code"/></div>
     <div class="details">
         <p><span>{{patient.cognom1}} {{patient.cognom2}}, {{patient.name}}</span></p>
-        <p><span>Edat:</span> {{person.dadesPacient.edat}}</p>
+        <p><span>Edat:</span> {{patient.edat}}</p>
         <p><span>Condició mèdica:</span>{{patient.enfermetat}}</p>
         <p><span>Estat Actual:</span> estat actual</p>
         <p><span>Metge Encarregat:</span> Rosendo Rey</p>
@@ -109,4 +109,6 @@
     <div class="photo"></div>
     <div class="details">
         <a style="font-size: 45px" href="/patient/edit/{{patient.id}}"><span>DIAGNÒSTIC</span></a>
+        <p>{{diagnostic}}</p>
+    </div>
 </div>

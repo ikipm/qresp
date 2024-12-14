@@ -83,7 +83,6 @@ function insertPacient(pacient) {
 function getPacientById(id) {
     const query = `SELECT * FROM Pacient WHERE id = ?;`;
     const pacientRow = db.prepare(query).get(id);
-    console.log(pacientRow);
 
     if (!pacientRow) return null;
 

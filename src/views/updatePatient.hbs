@@ -11,6 +11,13 @@
         <label for="cognom2">Cognom2:</label>
         <input type="text" id="cognom2" name="cognom2" value="{{patient.cognom2}}" placeholder="{{patient.cognom2}}">
     </div>
+        <label for="edat">Edat:</label>
+        <input type="number" id="edat" name="edat" value="{{patient.edat}}" placeholder="{{patient.edat}}">
+    </div>
+    <div>
+        <label for="malaltia">Malaltia:</label>
+        <input type="text" id="malaltia" name="malaltia" value="{{patient.enfermetat}}" placeholder="{{patient.enfermetat}}" required>
+    </div>
     <div>
         <label for="PresenciaDeFebre">Presencia De Febre:</label>
         <input type="checkbox" id="PresenciaDeFebre" name="PresenciaDeFebre" {{#if patient.dadesPacient.PresenciaDeFebre}}checked{{/if}}>
@@ -74,10 +81,6 @@
     <div>
         <label for="HabitsToxics_ExposicioFum">Habits Toxics Exposicio Fum:</label>
         <input type="checkbox" id="HabitsToxics_ExposicioFum" name="HabitsToxics_ExposicioFum" {{#if patient.dadesPacient.HabitsToxics_ExposicioFum}}checked{{/if}}>
-    </div>
-    <div>
-        <label for="Edat">Edat:</label>
-        <input type="number" id="Edat" name="Edat" value="{{patient.dadesPacient.Edat}}" placeholder="{{patient.dadesPacient.dadesPacient.EdatInput}}">
     </div>
     <div>
         <label for="DLCO">DLCO:</label>

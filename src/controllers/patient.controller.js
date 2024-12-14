@@ -1,12 +1,12 @@
 import qrcode from 'qrcode';
 import {createTable, insertPacient, getAllPacients, getPacientById, updatePacient, deletePacient} from '../pacient_db.js';
 import { getDiagnostic } from '../algoritme.js';
+import { Pacient } from '../pacient.js';
 
 const RenderPatientInfo = async (req, res) => {
     try {
         const patient = await getPacientById(req.params.id);
         if (patient) {
-          
           const diagnostic = getDiagnostic(patient);
           const url = `http://localhost:3000/patient/${patient.id}`;
           const qrCodeImage = await qrcode.toDataURL(url);
@@ -18,6 +18,21 @@ const RenderPatientInfo = async (req, res) => {
         console.error('Error getting pacients:', err);
         res.status(500).send('Server internal error');
       }
+}
+
+const AddPatientView = async (req, res) => {
+  res.render('addPatient');
+}
+
+const AddPatient = async (req, res) => {
+  try {
+    const patient = new Pacient(null, req.body.name, req.body.cognom1, req.body.cognom2, req.body.malaltia, parseInt(req.body.edat)); 
+    await insertPacient(patient);
+    res.redirect('/patient/' + patient.id);
+  } catch (err) {
+    console.error('Error adding pacient:', err);
+    res.status(500).send('Internal Server Error');
+  }
 }
 
 const UpdatePacientView = async (req, res) => {
@@ -41,7 +56,8 @@ const saveUpdatePacient = async (req, res) => {
       name: req.body.name,
       cognom1: req.body.cognom1,
       cognom2: req.body.cognom2,
-      edat: parseInt(req.body.Edat),
+      edat: parseInt(req.body.edat),
+      enfermetat: req.body.malaltia,
       dadesPacient: {
         PresenciaDeFebre: req.body.PresenciaDeFebre? 1: 0,
         Ofeg: req.body.Ofeg? 1: 0,
@@ -94,4 +110,4 @@ const CreateQRCode = async (req, res) =>{
       }
 }
 
-export { CreateQRCode, RenderPatientInfo, UpdatePacientView, saveUpdatePacient };
+export { CreateQRCode, RenderPatientInfo, UpdatePacientView, saveUpdatePacient, AddPatientView, AddPatient };
