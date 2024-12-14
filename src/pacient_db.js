@@ -62,3 +62,5 @@ function deletePacient(id) {
     const statement = db.prepare(query);
     return statement.run(id).changes > 0;
 }
+
+export { createTable, insertPacient, getAllPacients, getPacientById, updatePacient, deletePacient };
