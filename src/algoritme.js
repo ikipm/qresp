@@ -382,7 +382,7 @@ function getDiagnosticSAR(Pacient){
 }
 function getDiagnosticEXTRA(Pacient){
     let diagnostic = "";
-
+    var dadesPacient = Pacient.dadesPacient;
     // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
         diagnostic += "Diagnòstic: Sospita d'infecció. Recomanat tractament antibiòtic.\n";
