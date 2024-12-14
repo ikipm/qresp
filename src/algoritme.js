@@ -1,19 +1,5 @@
-import { Configuration, OpenAIApi } from "openai";
-import dotenv from "dotenv";
-
-dotenv.config({ path: "../claus.env" }); // Ajusta el camí si el fitxer està a l'arrel
-
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY, // Utilitza la clau d'entorn
-});
-const openai = new OpenAIApi(configuration);
-
 function getDiagnostic(dadesPacient) {
     var diagnostic = "";
-
-
-    let diagnostic = "";
-
     // [1] Presència de febre
     if (dadesPacient.PresenciaDeFebre) {
         diagnostic += "Diagnòstic: Sospita d'infecció. Recomanat tractament antibiòtic.\n";
