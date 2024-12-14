@@ -3,8 +3,7 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { createTable, getAllPacients, insertPacient } from './pacient_db.js'
-import { Pacient } from './pacient.js'
+import { createTable, getAllPacients, insertSamplePacients } from './pacient_db.js'
 
 // Create an express app at port 3000
 const app = express()
@@ -23,22 +22,7 @@ app.use(indexRoutes);
 
 // Start the database creating (if it doesn't exist) the table Pacient
 createTable();
-// Crear un pacient nou amb valors per defecte
-const persona = new Pacient(null, "a", "b", "c", 20);
-persona.omplirDadesPacient({
-    PresenciaDeFebre: true,
-    SignesAlarmaPresents: {
-        IncrementDeRespiracions: true
-    },
-    medicacioHabit: {
-        antifibrotics: true
-    },
-    edat: 45
-});
-
-console.log(persona);
-insertPacient(persona);
-console.log(getAllPacients());
+insertSamplePacients();
 
 app.listen(port, () => {
   console.log(`App listening on port: ${port}`)

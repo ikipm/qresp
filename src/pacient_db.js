@@ -1,4 +1,5 @@
 import Database from 'better-sqlite3';
+import { Pacient, DadesPacient } from './pacient.js';
 
 // Inicialitzar la connexió amb la base de dades
 const db = new Database('database.db');
@@ -172,8 +173,90 @@ function deletePacient(id) {
     const statement = db.prepare(query);
     return statement.run(id).changes > 0;
 }
-// Crear la taula i inserir pacients de mostra
-createTable();
+
+function insertSamplePacients() {
+    const countQuery = `SELECT COUNT(*) AS count FROM Pacient;`;
+    const { count } = db.prepare(countQuery).get();
+
+    if (count === 0) {
+        console.log('Inserint pacients de mostra, la base de dades està buida.');
+
+        const pacientsDeMostra = [
+            new Pacient(null, 'Joan', 'Garcia', 'Pérez', 45, {
+                PresenciaDeFebre: true,
+                ofeg: false,
+                IncrementMucositatICongestioNasalDolorDeGola: false,
+                IncrementMucositatIFebre: true,
+                DolorToracic: false,
+                Xiulets: false,
+                SignesAlarmaPresents: {
+                    FebreAltaODesaturacio: true,
+                    IncrementDeRespiracions: false,
+                    OfegEnReposOCianosi: false
+                },
+                malaltiesPrevis: true,
+                altresCroniques: false,
+                medicacioHabit: {
+                    antifibrotics: true,
+                    immunosupressors: false,
+                    oxigenoterapia: false
+                },
+                habitsToxics: {
+                    consumTabac: true,
+                    exposicioFum: false
+                },
+                DLCO: 60,
+                FVC: 75,
+                desaturacioPM6M: 90,
+                hipertensioPulmonar: false,
+                enfisema: false,
+                refluxGastroesofagic: true,
+                apneaSon: false,
+                carcinomaBroncogenic: false
+            }),
+            new Pacient(null, 'Maria', 'Lopez', 'Martínez', 37, {
+                PresenciaDeFebre: false,
+                ofeg: true,
+                IncrementMucositatICongestioNasalDolorDeGola: true,
+                IncrementMucositatIFebre: false,
+                DolorToracic: false,
+                Xiulets: true,
+                SignesAlarmaPresents: {
+                    FebreAltaODesaturacio: false,
+                    IncrementDeRespiracions: true,
+                    OfegEnReposOCianosi: false
+                },
+                malaltiesPrevis: false,
+                altresCroniques: true,
+                medicacioHabit: {
+                    antifibrotics: false,
+                    immunosupressors: true,
+                    oxigenoterapia: false
+                },
+                habitsToxics: {
+                    consumTabac: false,
+                    exposicioFum: true
+                },
+                DLCO: 55,
+                FVC: 70,
+                desaturacioPM6M: 85,
+                hipertensioPulmonar: true,
+                enfisema: false,
+                refluxGastroesofagic: false,
+                apneaSon: true,
+                carcinomaBroncogenic: false
+            })
+        ];
+
+        for (const pacient of pacientsDeMostra) {
+            insertPacient(pacient);
+        }
+
+        console.log('Pacients de mostra inserits correctament.');
+    } else {
+        console.log("La base de dades ja conté dades, no s'han inserit pacients de mostra.");
+    }
+}
 
 
-export { createTable, insertPacient, getPacientById, getAllPacients, updatePacient, deletePacient };
+export { createTable, insertPacient, getPacientById, getAllPacients, updatePacient, deletePacient, insertSamplePacients};

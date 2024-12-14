@@ -55,4 +55,4 @@ class Pacient {
     }
 }
 
-export { Pacient };
+export { Pacient, DadesPacient};
