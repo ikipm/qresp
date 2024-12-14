@@ -1,0 +1,24 @@
+provesAnalitiquesUrgents:
+rxTorax: Si s'ha fet una radiografia de tòrax.
+suspitapneu: Si hi ha sospita de pneumònia (relacionada amb proves diagnòstiques).
+Altres variables relacionades amb proves diagnòstiques:
+
+sospitaTEP: Si hi ha sospita de tromboembòlia pulmonar (requereix proves com ANGIO-TACAR + D-Dímer).
+tepConfirmat: Si s'ha confirmat el TEP (resultat d'una prova diagnòstica).
+Microbiologia (no usada en aquest codi però mencionada):
+
+pcrPositivaInfluenza: Si la PCR és positiva per Influenza (prova diagnòstica).
+sospitaCMV: Si hi ha sospita de CMV (implica proves com PCR o cultius específics).
+sospitaPneumocystis: Si hi ha sospita de Pneumocystis jirovecii (implica proves com tincions específiques o PCR).
+
+
+Símptoma	                                                            Proves indicades
+Ofeg	                                                                Rx tòrax, TCAR, Gasometria, Prova de marxa (PM6M).
+Increment de mucositat i febre	                                        Rx tòrax, PCR Influenza, cultiu d'esput.
+Dolor toràcic	                                                        Rx tòrax, TCAR, ANGIO-TACAR + D-Dímer.
+Xiulets	                                                                Rx tòrax, cultiu d'esput.
+Signes d'alarma (Febre alta/desaturació)	                            Gasometria, Rx tòrax, ANGIO-TACAR.
+Increment de respiracions	                                            Gasometria, Prova de marxa (PM6M), TCAR.
+Ofeg en repòs o cianosi	                                                ANGIO-TACAR + D-Dímer, Gasometria.
+Malalties prèvies amb DLCO baixa	                                    DLCO, Prova de marxa (PM6M).
+Apnea del son	                                                        Poligrafia nocturna.
