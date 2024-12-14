@@ -7,7 +7,7 @@ const RenderPatientInfo = async (req, res) => {
         const patient = await getPacientById(req.params.id);
         if (patient) {
           
-          const diagnostic = getDiagnostic(patient.dadesPacient);
+          const diagnostic = getDiagnostic(patient);
           const url = `http://localhost:3000/patient/${patient.id}`;
           const qrCodeImage = await qrcode.toDataURL(url);
           res.render('patient', { patient, qrCodeImage, diagnostic });
