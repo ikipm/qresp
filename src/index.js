@@ -21,6 +21,8 @@ app.set("views", path.join(__dirname, "views"));
 // Set up the router
 app.use(indexRoutes);
 
+app.use(express.urlencoded({ extended: true }));
+
 // Start the database creating (if it doesn't exist) the table Pacient
 createTable();
 insertSamplePacients();

@@ -1,0 +1,117 @@
+<form action="/patient/edit/{{patient.id}}" method="POST">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{patient.name}}" placeholder="{{patient.nameInput}}" required>
+    </div>
+    <div>
+        <label for="cognom1">Cognom1:</label>
+        <input type="text" id="cognom1" name="cognom1" value="{{patient.cognom1}}" placeholder="{{patient.cognom1}}" required>
+    </div>
+    <div>
+        <label for="cognom2">Cognom2:</label>
+        <input type="text" id="cognom2" name="cognom2" value="{{patient.cognom2}}" placeholder="{{patient.cognom2}}">
+    </div>
+    <div>
+        <label for="PresenciaDeFebre">Presencia De Febre:</label>
+        <input type="checkbox" id="PresenciaDeFebre" name="PresenciaDeFebre" {{#if patient.dadesPacient.PresenciaDeFebre}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="Ofeg">Ofeg:</label>
+        <input type="checkbox" id="Ofeg" name="Ofeg" {{#if patient.dadesPacient.Ofeg}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="IncrementMucositatICongestioNasalDolorDeGola">Increment Mucositat I Congestio Nasal Dolor De Gola:</label>
+        <input type="checkbox" id="IncrementMucositatICongestioNasalDolorDeGola" name="IncrementMucositatICongestioNasalDolorDeGola" {{#if patient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="IncrementMucositatIFebre">Increment Mucositat I Febre:</label>
+        <input type="checkbox" id="IncrementMucositatIFebre" name="IncrementMucositatIFebre" {{#if patient.dadesPacient.IncrementMucositatIFebre}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="DolorToracic">Dolor Toracic:</label>
+        <input type="checkbox" id="DolorToracic" name="DolorToracic" {{#if patient.dadesPacient.DolorToracic}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="Xiulets">Xiulets:</label>
+        <input type="checkbox" id="Xiulets" name="Xiulets" {{#if patient.dadesPacient.Xiulets}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="SignesAlarma_FebreAltaODesaturacio">Signes Alarma Febre Alta O Desaturacio:</label>
+        <input type="checkbox" id="SignesAlarma_FebreAltaODesaturacio" name="SignesAlarma_FebreAltaODesaturacio" {{#if patient.dadesPacient.SignesAlarma_FebreAltaODesaturacio}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="SignesAlarma_IncrementDeRespiracions">Signes Alarma Increment De Respiracions:</label>
+        <input type="checkbox" id="SignesAlarma_IncrementDeRespiracions" name="SignesAlarma_IncrementDeRespiracions" {{#if patient.dadesPacient.SignesAlarma_IncrementDeRespiracions}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="SignesAlarma_OfegEnReposOCianosi">Signes Alarma Ofeg En Repos O Cianosi:</label>
+        <input type="checkbox" id="SignesAlarma_OfegEnReposOCianosi" name="SignesAlarma_OfegEnReposOCianosi" {{#if patient.dadesPacient.SignesAlarma_OfegEnReposOCianosi}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="MalaltiesPrevis">Malalties Previs:</label>
+        <input type="checkbox" id="MalaltiesPrevis" name="MalaltiesPrevis" {{#if patient.dadesPacient.MalaltiesPrevis}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="AltresCroniques">Altres Croniques:</label>
+        <input type="checkbox" id="AltresCroniques" name="AltresCroniques" {{#if patient.dadesPacient.AltresCroniques}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="MedicacioHabit_Antifibrotics">Medicacio Habit Antifibrotics:</label>
+        <input type="checkbox" id="MedicacioHabit_Antifibrotics" name="MedicacioHabit_Antifibrotics" {{#if patient.dadesPacient.MedicacioHabit_Antifibrotics}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="MedicacioHabit_Immunosupressors">Medicacio Habit Immunosupressors:</label>
+        <input type="checkbox" id="MedicacioHabit_Immunosupressors" name="MedicacioHabit_Immunosupressors" {{#if patient.dadesPacient.MedicacioHabit_Immunosupressors}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="MedicacioHabit_Oxigenoterapia">Medicacio Habit Oxigenoterapia:</label>
+        <input type="checkbox" id="MedicacioHabit_Oxigenoterapia" name="MedicacioHabit_Oxigenoterapia" {{#if patient.dadesPacient.MedicacioHabit_Oxigenoterapia}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="HabitsToxics_ConsumTabac">Habits Toxics Consum Tabac:</label>
+        <input type="checkbox" id="HabitsToxics_ConsumTabac" name="HabitsToxics_ConsumTabac" {{#if patient.dadesPacient.HabitsToxics_ConsumTabac}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="HabitsToxics_ExposicioFum">Habits Toxics Exposicio Fum:</label>
+        <input type="checkbox" id="HabitsToxics_ExposicioFum" name="HabitsToxics_ExposicioFum" {{#if patient.dadesPacient.HabitsToxics_ExposicioFum}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="Edat">Edat:</label>
+        <input type="number" id="Edat" name="Edat" value="{{patient.dadesPacient.Edat}}" placeholder="{{patient.dadesPacient.dadesPacient.EdatInput}}">
+    </div>
+    <div>
+        <label for="DLCO">DLCO:</label>
+        <input type="number" step="0.01" id="DLCO" name="DLCO" value="{{patient.dadesPacient.DLCO}}" placeholder="{{patient.dadesPacient.dadesPacient.DLCOInput}}">
+    </div>
+    <div>
+        <label for="FVC">FVC:</label>
+        <input type="number" step="0.01" id="FVC" name="FVC" value="{{patient.dadesPacient.FVC}}" placeholder="{{patient.dadesPacient.dadesPacient.FVCInput}}">
+    </div>
+    <div>
+        <label for="DesaturacioPM6M">Desaturacio PM6M:</label>
+        <input type="number" step="0.01" id="DesaturacioPM6M" name="DesaturacioPM6M" value="{{patient.dadesPacient.DesaturacioPM6M}}" placeholder="{{patient.dadesPacient.dadesPacient.DesaturacioPM6MInput}}">
+    </div>
+    <div>
+        <label for="HipertensioPulmonar">Hipertensio Pulmonar:</label>
+        <input type="checkbox" id="HipertensioPulmonar" name="HipertensioPulmonar" {{#if patient.dadesPacient.HipertensioPulmonar}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="Enfisema">Enfisema:</label>
+        <input type="checkbox" id="Enfisema" name="Enfisema" {{#if patient.dadesPacient.Enfisema}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="RefluxGastroesofagic">Reflux Gastroesofagic:</label>
+        <input type="checkbox" id="RefluxGastroesofagic" name="RefluxGastroesofagic" {{#if patient.dadesPacient.RefluxGastroesofagic}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="ApneaSon">Apnea Son:</label>
+        <input type="checkbox" id="ApneaSon" name="ApneaSon" {{#if patient.dadesPacient.ApneaSon}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="CarcinomaBroncogenic">Carcinoma Broncogenic:</label>
+        <input type="checkbox" id="CarcinomaBroncogenic" name="CarcinomaBroncogenic" {{#if patient.dadesPacient.CarcinomaBroncogenic}}checked{{/if}}>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
