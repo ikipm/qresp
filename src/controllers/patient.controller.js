@@ -18,7 +18,7 @@ const RenderPatientInfo = async (req, res) => {
 
 const CreateQRCode = async (req, res) =>{
     try {
-        const url = "http://localhost:3000/patient/1"; // Here we should use the patient ID
+        const url = "http://localhost:3000/patient/" + req.param.id;
         const qrCodeImage = await qrcode.toDataURL(url);
         res.send(`<img src="${qrCodeImage}" alt="QR Code"/>`);
       } catch (err) {
