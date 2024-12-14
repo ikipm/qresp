@@ -9,8 +9,7 @@ function createTable() {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             cognom1 TEXT NOT NULL,
-            cognom2 TEXT,
-            edat INTEGER NOT NULL
+            cognom2 TEXT
         );
     `;
     db.prepare(query).run();
@@ -19,11 +18,11 @@ function createTable() {
 // Inserir un nou pacient
 function insertPacient(pacient) {
     const query = `
-        INSERT INTO Pacient (name, cognom1, cognom2, edat)
-        VALUES (?, ?, ?, ?);
+        INSERT INTO Pacient (name, cognom1, cognom2)
+        VALUES (?, ?, ?);
     `;
     const statement = db.prepare(query);
-    return statement.run(pacient.name, pacient.cognom1, pacient.cognom2, pacient.edat).lastInsertRowid;
+    return statement.run(pacient.name, pacient.cognom1, pacient.cognom2).lastInsertRowid;
 }
 
 // Obtenir tots els pacients
@@ -46,11 +45,11 @@ function getPacientById(id) {
 function updatePacient(pacient) {
     const query = `
         UPDATE Pacient
-        SET name = ?, cognom1 = ?, cognom2 = ?, edat = ?
+        SET name = ?, cognom1 = ?, cognom2 = ?,
         WHERE id = ?;
     `;
     const statement = db.prepare(query);
-    const result = statement.run(pacient.name, pacient.cognom1, pacient.cognom2, pacient.edat, pacient.id);
+    const result = statement.run(pacient.name, pacient.cognom1, pacient.cognom2, pacient.id);
     return result.changes > 0;
 }
 

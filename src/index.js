@@ -3,7 +3,8 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { createTable } from './pacient_db.js'
+import { createTable, insertPacient } from './pacient_db.js'
+import { Pacient } from './pacient.js'
 
 // Create an express app at port 3000
 const app = express()
@@ -22,6 +23,8 @@ app.use(indexRoutes);
 
 // Start the database creating (if it doesn't exist) the table Pacient
 createTable();
+const pacient = new Pacient(null ,"Joan", "Pitifli", "ChazaVinicius")
+insertPacient(pacient);
 
 app.listen(port, () => {
   console.log(`App listening on port: ${port}`)

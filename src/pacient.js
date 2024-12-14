@@ -42,3 +42,4 @@ class Pacient {
     }
 }
 
+export {Pacient}
