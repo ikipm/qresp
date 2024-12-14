@@ -12,6 +12,9 @@ function createTable() {
             cognom1 TEXT NOT NULL,
             cognom2 TEXT,
             enfermetat TEXT,
+            estatActual INTEGER,
+            metge TEXT,
+            centreSanitari TEXT,
             PresenciaDeFebre BOOLEAN,
             Ofeg BOOLEAN,
             IncrementMucositatICongestioNasalDolorDeGola BOOLEAN,
@@ -45,7 +48,7 @@ function createTable() {
 function insertPacient(pacient) {
     const query = `
         INSERT INTO Pacient (
-            name, cognom1, cognom2, enfermetat,
+            name, cognom1, cognom2, enfermetat, estatActual, metge, centreSanitari,
             PresenciaDeFebre, Ofeg, IncrementMucositatICongestioNasalDolorDeGola,
             IncrementMucositatIFebre, DolorToracic, Xiulets,
             SignesAlarma_FebreAltaODesaturacio, SignesAlarma_IncrementDeRespiracions,
@@ -54,11 +57,11 @@ function insertPacient(pacient) {
             HabitsToxics_ConsumTabac, HabitsToxics_ExposicioFum, Edat,
             DLCO, FVC, DesaturacioPM6M, HipertensioPulmonar, Enfisema, RefluxGastroesofagic,
             ApneaSon, CarcinomaBroncogenic
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
     `;
     const statement = db.prepare(query);
     return statement.run(
-        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfermetat,
+        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfermetat, pacient.estatActual, pacient.metge, pacient.centreSanitari,
         pacient.dadesPacient.PresenciaDeFebre ? 1 : 0, pacient.dadesPacient.ofeg ? 1 : 0,
         pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola ? 1 : 0,
         pacient.dadesPacient.IncrementMucositatIFebre ? 1 : 0,
@@ -126,6 +129,9 @@ function getPacientById(id) {
         cognom2: pacientRow.cognom2,
         enfermetat: pacientRow.enfermetat,
         edat: pacientRow.Edat,
+        estatActual: pacientRow.estatActual,
+        metge: pacientRow.metge,
+        centreSanitari: pacientRow.centreSanitari,
         dadesPacient
     };
 }
@@ -138,7 +144,7 @@ function getAllPacients() {
 function updatePacient(pacient) {
     const query = `
         UPDATE Pacient
-        SET name = ?, cognom1 = ?, cognom2 = ?, enfermetat = ?, Edat = ?,
+        SET name = ?, cognom1 = ?, cognom2 = ?, enfermetat = ?, Edat = ?, estatActual = ?, metge = ?, centreSanitari = ?,
             PresenciaDeFebre = ?, Ofeg = ?, IncrementMucositatICongestioNasalDolorDeGola = ?,
             IncrementMucositatIFebre = ?, DolorToracic = ?, Xiulets = ?,
             SignesAlarma_FebreAltaODesaturacio = ?, SignesAlarma_IncrementDeRespiracions = ?,
@@ -151,7 +157,7 @@ function updatePacient(pacient) {
     `;
     const statement = db.prepare(query);
     const result = statement.run(
-        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfermetat, pacient.edat,
+        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfermetat, pacient.edat, pacient.estatActual, pacient.metge, pacient.centreSanitari,
         pacient.dadesPacient.PresenciaDeFebre, pacient.dadesPacient.ofeg,
         pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola, pacient.dadesPacient.IncrementMucositatIFebre,
         pacient.dadesPacient.DolorToracic, pacient.dadesPacient.Xiulets,
@@ -184,7 +190,7 @@ function insertSamplePacients() {
         console.log('Inserint pacients de mostra, la base de dades està buida.');
 
         const pacientsDeMostra = [
-            new Pacient(null, 'Joan', 'Garcia', 'Pérez', 'enfermetat', 45, {
+            new Pacient(null, 'Joan', 'Garcia', 'Pérez', 'enfermetat', 45, 3, 'Dr. Rosendo Rei', 'Hospital universitari de la FIB', {
                 PresenciaDeFebre: true,
                 ofeg: false,
                 IncrementMucositatICongestioNasalDolorDeGola: false,
@@ -216,7 +222,7 @@ function insertSamplePacients() {
                 apneaSon: false,
                 carcinomaBroncogenic: false
             }),
-            new Pacient(null, 'Maria', 'Lopez', 'Martínez', 'enfermetat', 37, {
+            new Pacient(null, 'Maria', 'Lopez', 'Martínez', 'Obsesió amb el Josep Llorenç', 37, 1, 'Dra. Alice IC', 'Hospital privat ASES', {
                 PresenciaDeFebre: false,
                 ofeg: true,
                 IncrementMucositatICongestioNasalDolorDeGola: true,
