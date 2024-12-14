@@ -40,13 +40,13 @@ class DadesPacient {
 }
 
 class Pacient {
-    constructor(id = null, name = '', cognom1 = '', cognom2 = null, edat = null, enfermatat = '', dadesPacient = new DadesPacient()) {
+    constructor(id = null, name = '', cognom1 = '', cognom2 = null, enfermetat = '', edat = null, dadesPacient = new DadesPacient()) {
         this.id = id;
         this.name = name;
         this.cognom1 = cognom1;
         this.cognom2 = cognom2;
+        this.enfermetat = enfermetat;
         this.edat = edat;
-        this.enfermatat = enfermatat;
         this.dadesPacient = dadesPacient;
     }
 

@@ -58,7 +58,7 @@ function insertPacient(pacient) {
     `;
     const statement = db.prepare(query);
     return statement.run(
-        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfemetat,
+        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfermetat,
         pacient.dadesPacient.PresenciaDeFebre ? 1 : 0, pacient.dadesPacient.ofeg ? 1 : 0,
         pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola ? 1 : 0,
         pacient.dadesPacient.IncrementMucositatIFebre ? 1 : 0,
@@ -83,6 +83,7 @@ function insertPacient(pacient) {
 function getPacientById(id) {
     const query = `SELECT * FROM Pacient WHERE id = ?;`;
     const pacientRow = db.prepare(query).get(id);
+    console.log(pacientRow);
 
     if (!pacientRow) return null;
 
@@ -124,7 +125,7 @@ function getPacientById(id) {
         name: pacientRow.name,
         cognom1: pacientRow.cognom1,
         cognom2: pacientRow.cognom2,
-        enfemetat: pacientRow.enfemetat,
+        enfermetat: pacientRow.enfermetat,
         edat: pacientRow.Edat,
         dadesPacient
     };
@@ -151,7 +152,7 @@ function updatePacient(pacient) {
     `;
     const statement = db.prepare(query);
     const result = statement.run(
-        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfemetat, pacient.edat,
+        pacient.name, pacient.cognom1, pacient.cognom2, pacient.enfermetat, pacient.edat,
         pacient.dadesPacient.PresenciaDeFebre, pacient.dadesPacient.ofeg,
         pacient.dadesPacient.IncrementMucositatICongestioNasalDolorDeGola, pacient.dadesPacient.IncrementMucositatIFebre,
         pacient.dadesPacient.DolorToracic, pacient.dadesPacient.Xiulets,
