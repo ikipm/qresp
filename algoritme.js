@@ -4,15 +4,15 @@ function getDiagnostic(pacient) {
 
     // **Diagnòstic principal basat en els símptomes**
     if (dades.PresenciaDeFebre) {
-        diagnostic = "Realitzar analítica bàsica (hemograma, PCR).\nSol·licitar cultius (sang i esput) si sospita d’infecció.\nTomografia (TCAR) per descartar pneumònia/inflamació aguda.";
+        diagnostic = "Realitzar analítica bàsica (hemograma, PCR).\nSol·licitar cultius (sang i esput) si sospita d'infecció.\nTomografia (TCAR) per descartar pneumònia/inflamació aguda.";
     } else if (dades.IncrementMucositatICongestioNasalDolorDeGola) {
-        diagnostic = "Sospita d’infecció respiratòria alta (viral o bacteriana).\nTractament: hidratació, mucolítics, i antibiòtics si hi ha sospita bacteriana.\nSi no hi ha resposta, considerar TCAR i/o broncoscòpia.";
+        diagnostic = "Sospita d'infecció respiratòria alta (viral o bacteriana).\nTractament: hidratació, mucolítics, i antibiòtics si hi ha sospita bacteriana.\nSi no hi ha resposta, considerar TCAR i/o broncoscòpia.";
     } else if (dades.IncrementMucositatIFebre) {
-        diagnostic = "Sospita d’infecció pulmonar.\nIniciar antibiòtics empírics (segons protocols locals).\nProves complementàries: hemocultius, gasometria arterial i radiografia/TCAR.";
+        diagnostic = "Sospita d'infecció pulmonar.\nIniciar antibiòtics empírics (segons protocols locals).\nProves complementàries: hemocultius, gasometria arterial i radiografia/TCAR.";
     } else if (dades.DolorToracic) {
         diagnostic = "Avaluar possibles causes: Embolisme pulmonar: Sol·licitar D-dímer i TC amb contrast.\nExacerbació de fibrosi pulmonar: Confirmar amb TCAR i proves funcionals.";
     } else if (dades.Xiulets) {
-        diagnostic = "Indicatiu d’obstrucció bronquial o asma superposada.\nTractament: broncodilatadors, excepte en MPID fibròtica sense sibilants (evitar).";
+        diagnostic = "Indicatiu d'obstrucció bronquial o asma superposada.\nTractament: broncodilatadors, excepte en MPID fibròtica sense sibilants (evitar).";
     }
 
     // **Avaluació dels signes d'alarma**
@@ -23,7 +23,7 @@ function getDiagnostic(pacient) {
         diagnostic += "\nTractament urgent per estabilitzar respiració. Considerar ventilació no invasiva (VNI) en casos severs.";
     }
     if (dades.SignesAlarmaPresents.OfegEnReposOCianosi) {
-        diagnostic += "\nEmergència mèdica: inici immediat d’oxigenoteràpia. Derivació urgent a UCI si no hi ha millora ràpida.";
+        diagnostic += "\nEmergència mèdica: inici immediat d'oxigenoteràpia. Derivació urgent a UCI si no hi ha millora ràpida.";
     }
 
     // **Factors pronòstics**
