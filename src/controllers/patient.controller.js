@@ -1,4 +1,5 @@
 import qrcode from 'qrcode';
+import {createTable, insertPacient, getAllPacients, getPacientById, updatePacient, deletePacient} from '../pacient_db.js';
 
 const CreateQRCode = async (req, res) =>{
     try {

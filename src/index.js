@@ -3,7 +3,7 @@ import express from 'express'
 import { engine } from 'express-handlebars'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { createTable } from './pacient-db.js';
+import { createTable } from './pacient_db.js'
 
 // Create an express app at port 3000
 const app = express()
@@ -17,13 +17,11 @@ app.engine('hbs', engine({ extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.set("views", path.join(__dirname, "views"));
 
+// Set up the router
 app.use(indexRoutes);
 
+// Start the database creating (if it doesn't exist) the table Pacient
 createTable();
-
-app.get('/', (req, res) => {
-  res.render('home', { title: 'Qres', webTitle: 'Qresp BitsXMarato 2024' });
-});
 
 app.listen(port, () => {
   console.log(`App listening on port: ${port}`)

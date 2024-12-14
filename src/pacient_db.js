@@ -1,4 +1,4 @@
-const Database = require('better-sqlite3');
+import Database from 'better-sqlite3';
 
 // Inicialitzar la connexió amb la base de dades
 const db = new Database('database.db');
@@ -62,3 +62,5 @@ function deletePacient(id) {
     const statement = db.prepare(query);
     return statement.run(id).changes > 0;
 }
+
+export { createTable, insertPacient, getAllPacients, getPacientById, updatePacient, deletePacient };
