@@ -27,8 +27,8 @@ const AddPatientView = async (req, res) => {
 const AddPatient = async (req, res) => {
   try {
     const patient = new Pacient(null, req.body.name, req.body.cognom1, req.body.cognom2, req.body.malaltia, parseInt(req.body.edat), parseInt(req.body.estatActual), req.body.metge, req.body.centreSanitari); 
-    await insertPacient(patient);
-    res.redirect('/patient/' + patient.id);
+    const patientID = await insertPacient(patient);
+    res.redirect('/patient/' + patientID);
   } catch (err) {
     console.error('Error adding pacient:', err);
     res.status(500).send('Internal Server Error');
