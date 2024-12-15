@@ -76,4 +76,4 @@ function tractament(dadesProva){
     // Retorn del diagnòstic
     return diagnostic.length > 0 ? diagnostic : ["No s'han detectat condicions específiques. Controlar i monitoritzar."];
 }
-
+export {tractament};
