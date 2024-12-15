@@ -5,6 +5,11 @@ import { renderChatBot, sendPrompt } from '../controllers/chatBot.controller.js'
 
 const router = Router();
 
+// Handle undefined routes
+const noDefined = (req, res) => {
+    res.redirect('/patient/add');
+};
+
 // Routes
 router.get('/', RenderHome);
 router.get('/chat/:id', renderChatBot);
@@ -17,5 +22,6 @@ router.post('/patient/edit/:id', saveUpdatePacient);
 router.post('/patient/add/', AddPatient);
 router.get('/patient/test/:id', showTestPatientForm);
 router.post('/patient/test/:id', processProvesPacient);
+router.use('*', noDefined);
 
 export default router;
