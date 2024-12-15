@@ -6,7 +6,7 @@ function tractament(dadesProva){
     // [1] Valoració a urgències
     if (dadesProva.urgencia) {
         diagnostic.push("Analítica urgent (bioquímica, hemograma, coagulació).\n\n");
-        if(provesAnalitiquesUrgents.rxTorax && provesAnalitiquesUrgents.suspitapneu){
+        if(dadesProva.provesAnalitiquesUrgents.rxTorax && dadesProva.provesAnalitiquesUrgents.suspitapneu){
             diagnostic.push("Esput (gram i cultiu convencional, fongs/micobacteris) ntigenúria (pneumococ/legionella). 2 hemocultius. PCR per virus influenza A i B (si sospita de grip)")
         }
     }

@@ -11,7 +11,7 @@ const RenderPatientInfo = async (req, res) => {
           const diagnostic = getDiagnostic(patient);
           const url = `http://localhost:3000/patient/${patient.id}`;
           const qrCodeImage = await qrcode.toDataURL(url);
-          res.render('patient', { patient, qrCodeImage, diagnostic });
+          res.render('patient', { patient, qrCodeImage, diagnostic, tractament: "" });
         }	else {
           res.status(404).send('Patient not found');
         }
@@ -126,33 +126,35 @@ const showTestPatientForm = async (req, res) => {
 
 const processProvesPacient = async (req, res) => {
   try {
+    var patient = getPacientById(req.params.id);
     var pacientProves = new ProvesPacient();
 
     // Assignar els valors del formulari
-    pacientProves.urgencia = req.body.urgencia;
-    pacientProves.provesAnalitiquesUrgents.rxTorax = req.body.rxTorax;
-    pacientProves.provesAnalitiquesUrgents.suspitapneu = req.body.suspitapneu;
+    pacientProves.urgencia = req.body.urgencia? 1: 0;
+    pacientProves.provesAnalitiquesUrgents.rxTorax = req.body.rxTorax? 1: 0;
+    pacientProves.provesAnalitiquesUrgents.suspitapneu = req.body.suspitapneu? 1: 0;
     pacientProves.dxConcret = req.body.dxConcret;
-    pacientProves.sospitaTEP = req.body.sospitaTEP;
-    pacientProves.tepConfirmat = req.body.tepConfirmat;
-    pacientProves.immunocompetent = req.body.immunocompetent;
-    pacientProves.immunosupressors = req.body.immunosupressors;
-    pacientProves.pcrPositivaInfluenza = req.body.pcrPositivaInfluenza;
-    pacientProves.sospitaCMV = req.body.sospitaCMV;
-    pacientProves.sospitaPneumocystis = req.body.sospitaPneumocystis;
-    pacientProves.necessitaOxigenoterapia = req.body.necessitaOxigenoterapia;
-    pacientProves.inhibidorBombaProtons = req.body.inhibidorBombaProtons;
-    pacientProves.nAcetilcisteina = req.body.nAcetilcisteina;
-    pacientProves.nebulitzacions = req.body.nebulitzacions;
-    pacientProves.hbpmNecessari = req.body.hbpmNecessari;
-    pacientProves.metilprednisolona = req.body.metilprednisolona;
-    pacientProves.losartanNecessari = req.body.losartanNecessari;
+    pacientProves.sospitaTEP = req.body.sospitaTEP? 1: 0;
+    pacientProves.tepConfirmat = req.body.tepConfirmat? 1: 0;
+    pacientProves.immunocompetent = req.body.immunocompetent? 1: 0;
+    pacientProves.immunosupressors = req.body.immunosupressors? 1: 0;
+    pacientProves.pcrPositivaInfluenza = req.body.pcrPositivaInfluenza? 1: 0;
+    pacientProves.sospitaCMV = req.body.sospitaCMV? 1: 0;
+    pacientProves.sospitaPneumocystis = req.body.sospitaPneumocystis? 1: 0;
+    pacientProves.necessitaOxigenoterapia = req.body.necessitaOxigenoterapia? 1: 0;
+    pacientProves.inhibidorBombaProtons = req.body.inhibidorBombaProtons? 1: 0;
+    pacientProves.nAcetilcisteina = req.body.nAcetilcisteina? 1: 0;
+    pacientProves.nebulitzacions = req.body.nebulitzacions? 1: 0;
+    pacientProves.hbpmNecessari = req.body.hbpmNecessari? 1: 0;
+    pacientProves.metilprednisolona = req.body.metilprednisolona? 1: 0;
+    pacientProves.losartanNecessari = req.body.losartanNecessari? 1: 0;
 
     // Cridar la funció de tractament
     const resultatTractament = tractament(pacientProves);
-    console.log(resultatTractament);
-    // Renderitzar una pàgina amb el resultat
-    res.render('resultatTractament', { resultat: resultatTractament });
+    const diagnostic = getDiagnostic(patient);
+    const url = `http://localhost:3000/patient/${patient.id}`;
+    const qrCodeImage = await qrcode.toDataURL(url);
+    res.render('patient', { patient, qrCodeImage, diagnostic, tractament: resultatTractament });
   } catch (err) {
     console.error('Error processant les proves del pacient:', err);
     res.status(500).send('Error intern del servidor');
