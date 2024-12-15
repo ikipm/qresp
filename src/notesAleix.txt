@@ -22,3 +22,31 @@ Increment de respiracions	                                            Gasometria
 Ofeg en repòs o cianosi	                                                ANGIO-TACAR + D-Dímer, Gasometria.
 Malalties prèvies amb DLCO baixa	                                    DLCO, Prova de marxa (PM6M).
 Apnea del son	                                                        Poligrafia nocturna.
+
+if ( ofeg || Incrementmucositat || Xiulets ||Dolortoracic){
+    push.diagnostic( Fer Rx torax)
+}
+if ( Febre Alta || Incrementres || ofeg ||ofeg en repos ){
+    push.diagnostic ( Fer Gasometria)
+}
+if (ofeg || Dolortoracic || Incrementres){
+    push.diagnostic (Fer TCAR)
+}
+if ( ofeg || Incrementres || Malaltiesprevis && TCAR baixa){
+    push.diagnostic (Fer Prova de marxa (PM6M))
+}
+if ( Dolortoracic){
+    push.diagnostic (Fer PCR Influenza)
+}
+if ( Dolortoracic || febrealta){
+    push.diagnostic (Fer cultiu d'esput)
+}
+if ( Dolortoracic || febre || ofegen){
+    push.diagnostic (Fer ANGIO-TACAR + DIMER)
+}
+if (Apneadelson){
+    push.diagnostic (Fer Poligrafia nocturna)
+}
+if (Malaltiesprevis){
+    push.diagnostic ( fer DLCO)
+}

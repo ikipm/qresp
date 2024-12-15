@@ -98,8 +98,67 @@ function getDiagnosticFPI(Pacient) {
     if (dadesPacient.medicacioHabit.oxigenoterapia) {
         diagnostic.push( "Ajustar oxigenoteràpia segons les necessitats actuals.\n\n");
     }
+    
+    // [1] Rx Tòrax
+    if (dadesPacient.ofeg || 
+        dadesPacient.IncrementMucositatICongestioNasalDolorDeGola || 
+        dadesPacient.Xiulets || 
+        dadesPacient.DolorToracic) {
+        diagnostic.push("Fer Rx tòrax");
+    }
+    
+    // [2] Gasometria arterial
+    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer Gasometria arterial");
+    }
+    
+    // [3] TCAR (Tomografia Computada d'Alta Resolució)
+    if (dadesPacient.ofeg || 
+        dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
+    }
+    
+    // [4] Prova de marxa de 6 minuts (PM6M)
+    if (dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
+        diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
+    }
+    
+    // [5] PCR Influenza
+    if (dadesPacient.DolorToracic) {
+        diagnostic.push("Fer PCR per Influenza");
+    }
+    
+    // [6] Cultiu d'esput
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        diagnostic.push("Fer cultiu d'esput");
+    }
+    
+    // [7] ANGIO-TACAR + Dímer
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer ANGIO-TACAR + Dímer");
+    }
+    
+    // [8] Poligrafia nocturna
+    if (dadesPacient.apneaSon) {
+        diagnostic.push("Fer Poligrafia nocturna");
+    }
+    
+    // [9] DLCO (Difusió del monòxid de carboni)
+    if (dadesPacient.MalaltiesPrevis) {
+        diagnostic.push("Fer DLCO (Difusió del Monòxid de Carboni)");
+    }
+    
 
-    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar.";
+    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar. No s'han de fer  proves.";
 }
 function getDiagnosticNHf(Pacient) {
 
@@ -171,7 +230,66 @@ function getDiagnosticNHf(Pacient) {
     if (dadesPacient.medicacioHabit.oxigenoterapia) {
         diagnostic.push("Ajustar oxigenoteràpia segons les necessitats actuals.\n\n");
     }
-    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar.";
+
+    // [1] Rx Tòrax
+    if (dadesPacient.ofeg || 
+        dadesPacient.IncrementMucositatICongestioNasalDolorDeGola || 
+        dadesPacient.Xiulets || 
+        dadesPacient.DolorToracic) {
+        diagnostic.push("Fer Rx tòrax");
+    }
+    
+    // [2] Gasometria arterial
+    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer Gasometria arterial");
+    }
+    
+    // [3] TCAR (Tomografia Computada d'Alta Resolució)
+    if (dadesPacient.ofeg || 
+        dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
+    }
+    
+    // [4] Prova de marxa de 6 minuts (PM6M)
+    if (dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
+        diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
+    }
+    
+    // [5] PCR Influenza
+    if (dadesPacient.DolorToracic) {
+        diagnostic.push("Fer PCR per Influenza");
+    }
+    
+    // [6] Cultiu d'esput
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        diagnostic.push("Fer cultiu d'esput");
+    }
+    
+    // [7] ANGIO-TACAR + Dímer
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer ANGIO-TACAR + Dímer");
+    }
+    
+    // [8] Poligrafia nocturna
+    if (dadesPacient.apneaSon) {
+        diagnostic.push("Fer Poligrafia nocturna");
+    }
+    
+    // [9] DLCO (Difusió del monòxid de carboni)
+    if (dadesPacient.MalaltiesPrevis) {
+        diagnostic.push("Fer DLCO (Difusió del Monòxid de Carboni)");
+    }
+    
+    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar. No s'han de fer proves";
 }
 function getDiagnosticEPIDEAS(Pacient){
     var diagnostic = [];
@@ -242,7 +360,67 @@ function getDiagnosticEPIDEAS(Pacient){
     if (dadesPacient.medicacioHabit.oxigenoterapia) {
         diagnostic.push("Ajustar oxigenoteràpia segons les necessitats actuals.\n\n");
     }
-    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar.";
+
+
+    // [1] Rx Tòrax
+    if (dadesPacient.ofeg || 
+        dadesPacient.IncrementMucositatICongestioNasalDolorDeGola || 
+        dadesPacient.Xiulets || 
+        dadesPacient.DolorToracic) {
+        diagnostic.push("Fer Rx tòrax");
+    }
+    
+    // [2] Gasometria arterial
+    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer Gasometria arterial");
+    }
+    
+    // [3] TCAR (Tomografia Computada d'Alta Resolució)
+    if (dadesPacient.ofeg || 
+        dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
+    }
+    
+    // [4] Prova de marxa de 6 minuts (PM6M)
+    if (dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
+        diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
+    }
+    
+    // [5] PCR Influenza
+    if (dadesPacient.DolorToracic) {
+        diagnostic.push("Fer PCR per Influenza");
+    }
+    
+    // [6] Cultiu d'esput
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        diagnostic.push("Fer cultiu d'esput");
+    }
+    
+    // [7] ANGIO-TACAR + Dímer
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer ANGIO-TACAR + Dímer");
+    }
+    
+    // [8] Poligrafia nocturna
+    if (dadesPacient.apneaSon) {
+        diagnostic.push("Fer Poligrafia nocturna");
+    }
+    
+    // [9] DLCO (Difusió del monòxid de carboni)
+    if (dadesPacient.MalaltiesPrevis) {
+        diagnostic.push("Fer DLCO (Difusió del Monòxid de Carboni)");
+    }
+     
+    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar. No s'han de fer proves";
 }
 function getDiagnosticFNC(Pacient){
     var diagnostic = [];
@@ -306,8 +484,65 @@ function getDiagnosticFNC(Pacient){
         diagnostic.push("Ajustar oxigenoteràpia segons les necessitats actuals.\n\n");
     }
     
+    // [1] Rx Tòrax
+    if (dadesPacient.ofeg || 
+        dadesPacient.IncrementMucositatICongestioNasalDolorDeGola || 
+        dadesPacient.Xiulets || 
+        dadesPacient.DolorToracic) {
+        diagnostic.push("Fer Rx tòrax");
+    }
+    
+    // [2] Gasometria arterial
+    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer Gasometria arterial");
+    }
+    
+    // [3] TCAR (Tomografia Computada d'Alta Resolució)
+    if (dadesPacient.ofeg || 
+        dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
+    }
+    
+    // [4] Prova de marxa de 6 minuts (PM6M)
+    if (dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
+        diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
+    }
+    
+    // [5] PCR Influenza
+    if (dadesPacient.DolorToracic) {
+        diagnostic.push("Fer PCR per Influenza");
+    }
+    
+    // [6] Cultiu d'esput
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        diagnostic.push("Fer cultiu d'esput");
+    }
+    
+    // [7] ANGIO-TACAR + Dímer
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer ANGIO-TACAR + Dímer");
+    }
+    
+    // [8] Poligrafia nocturna
+    if (dadesPacient.apneaSon) {
+        diagnostic.push("Fer Poligrafia nocturna");
+    }
+    
+    // [9] DLCO (Difusió del monòxid de carboni)
+    if (dadesPacient.MalaltiesPrevis) {
+        diagnostic.push("Fer DLCO (Difusió del Monòxid de Carboni)");
+    }
 
-    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar.";
+    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar. No s'han de fer proves";
 }
 function getDiagnosticSAR(Pacient){
 
@@ -374,7 +609,69 @@ function getDiagnosticSAR(Pacient){
     if (dadesPacient.medicacioHabit.oxigenoterapia) {
         diagnostic.push("Ajustar oxigenoteràpia segons les necessitats actuals.\n\n");
     }
-    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar.";
+
+    // [1] Rx Tòrax
+    if (dadesPacient.ofeg || 
+        dadesPacient.IncrementMucositatICongestioNasalDolorDeGola || 
+        dadesPacient.Xiulets || 
+        dadesPacient.DolorToracic) {
+        diagnostic.push("Fer Rx tòrax");
+    }
+    
+    // [2] Gasometria arterial
+    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer Gasometria arterial");
+    }
+    
+    // [3] TCAR (Tomografia Computada d'Alta Resolució)
+    if (dadesPacient.ofeg || 
+        dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
+    }
+    
+    // [4] Prova de marxa de 6 minuts (PM6M)
+    if (dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
+        diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
+    }
+    
+    // [5] PCR Influenza
+    if (dadesPacient.DolorToracic) {
+        diagnostic.push("Fer PCR per Influenza");
+    }
+    
+    // [6] Cultiu d'esput
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        diagnostic.push("Fer cultiu d'esput");
+    }
+    
+    // [7] ANGIO-TACAR + Dímer
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer ANGIO-TACAR + Dímer");
+    }
+    
+    // [8] Poligrafia nocturna
+    if (dadesPacient.apneaSon) {
+        diagnostic.push("Fer Poligrafia nocturna");
+    }
+    
+    // [9] DLCO (Difusió del monòxid de carboni)
+    if (dadesPacient.MalaltiesPrevis) {
+        diagnostic.push("Fer DLCO (Difusió del Monòxid de Carboni)");
+    }
+    
+
+    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar. No cal fer proves";
+
+    
 }
 function getDiagnosticEXTRA(Pacient){
     let diagnostic = [];
@@ -454,7 +751,65 @@ function getDiagnosticEXTRA(Pacient){
     if (dadesPacient.medicacioHabit.oxigenoterapia) {
         diagnostic.push("Ajustar oxigenoteràpia segons les necessitats actuals.\n\n");
     }
-    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar.";
+
+    // [1] Rx Tòrax
+    if (dadesPacient.ofeg || 
+        dadesPacient.IncrementMucositatICongestioNasalDolorDeGola || 
+        dadesPacient.Xiulets || 
+        dadesPacient.DolorToracic) {
+        diagnostic.push("Fer Rx tòrax");
+    }
+    
+    // [2] Gasometria arterial
+    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer Gasometria arterial");
+    }
+    
+    // [3] TCAR (Tomografia Computada d'Alta Resolució)
+    if (dadesPacient.ofeg || 
+        dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
+    }
+    
+    // [4] Prova de marxa de 6 minuts (PM6M)
+    if (dadesPacient.ofeg || 
+        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
+        diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
+    }
+    
+    // [5] PCR Influenza
+    if (dadesPacient.DolorToracic) {
+        diagnostic.push("Fer PCR per Influenza");
+    }
+    
+    // [6] Cultiu d'esput
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        diagnostic.push("Fer cultiu d'esput");
+    }
+    
+    // [7] ANGIO-TACAR + Dímer
+    if (dadesPacient.DolorToracic || 
+        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
+        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        diagnostic.push("Fer ANGIO-TACAR + Dímer");
+    }
+    
+    // [8] Poligrafia nocturna
+    if (dadesPacient.apneaSon) {
+        diagnostic.push("Fer Poligrafia nocturna");
+    }
+    
+    // [9] DLCO (Difusió del monòxid de carboni)
+    if (dadesPacient.MalaltiesPrevis) {
+        diagnostic.push("Fer DLCO (Difusió del Monòxid de Carboni)");
+    }
+    return diagnostic || "No s'han detectat condicions específiques. Controlar i monitoritzar. No s'han de fer proves";
 }
 
 

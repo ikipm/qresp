@@ -1,5 +1,6 @@
-const dadesdePacient = {
+const dadesProva = {
     urgencia: false, // Boolean: Si es tracta d'una urgència
+    
     provesAnalitiquesUrgents: {
         rxTorax: false, // Boolean: Si s'ha fet una radiografia de tòrax
         suspitapneu: false, // Boolean: Si hi ha sospita de pneumònia
@@ -22,10 +23,10 @@ const dadesdePacient = {
 };
 
 let diagnostic = [];
-let dadesPacient = Pacient.dadesdePacient;
+let dadesPacient = Pacient.dadesProva;
 
 // [1] Valoració a urgències
-if (dadesdePacient.urgencia) {
+if (dadesProva.urgencia) {
     diagnostic.push("Analítica urgent (bioquímica, hemograma, coagulació).\n\n");
     if(provesAnalitiquesUrgents.rxTorax && provesAnalitiquesUrgents.suspitapneu){
         diagnostic.push("Esput (gram i cultiu convencional, fongs/micobacteris) ntigenúria (pneumococ/legionella). 2 hemocultius. PCR per virus influenza A i B (si sospita de grip)")
@@ -34,10 +35,10 @@ if (dadesdePacient.urgencia) {
 
 
 // [2] Valoració a NML Guàrdia
-if (dadesdePacient.dxConcret && dadesdePacient.dxConcret !== "pneumonia") {
-    if (dadesdePacient.sospitaTEP) {
+if (dadesProva.dxConcret && dadesProva.dxConcret !== "pneumonia") {
+    if (dadesProva.sospitaTEP) {
         diagnostic.push("ANGIO-TACAR + D-Dímer per sospita de TEP.\n\n");
-        if (dadesdePacient.tepConfirmat) {
+        if (dadesProva.tepConfirmat) {
             diagnostic.push("TEP confirmat: Ingrés a NML i tractament amb HBPM (heparina baix pes molecular) i tractament específic.\n\n");
         } else {
             diagnostic.push("TEP descartat: Valoració del parènquima.\n\n");
@@ -45,49 +46,49 @@ if (dadesdePacient.dxConcret && dadesdePacient.dxConcret !== "pneumonia") {
     }
 } 
 
-else if (dadesdePacient.dxConcret === "pneumonia") {
-    if (dadesdePacient.immunocompetent) {
+else if (dadesProva.dxConcret === "pneumonia") {
+    if (dadesProva.immunocompetent) {
         diagnostic.push("Pacient immunocompetent: Tractament amb Oseltamivir 75mg/12h v.o., Cefalosporina 3ª generació i Levofloxacino 500mg/24h v.o.\n\n");
-    } else if (dadesdePacient.immunosupressors) {
+    } else if (dadesProva.immunosupressors) {
         diagnostic.push("Pacient immunodeprimit: Tractament inicial amb Piperacil·lina/Tazobactam 4g/0,5g cada 8h e.v. (+ Cefalosporina 3ª generació) i Levofloxacino 500mg/24h v.o.\n\n");
-        if (dadesdePacient.pcrPositivaInfluenza) {
+        if (dadesProva.pcrPositivaInfluenza) {
             diagnostic.push("PCR positiva a virus Influenza: Tractament antiviral específic.\n\n");
         }
-        if (dadesdePacient.sospitaCMV) {
+        if (dadesProva.sospitaCMV) {
             diagnostic.push("Sospita de CMV: Tractament amb Ganciclovir 5mg/Kg cada 12h e.v.\n\n");
         }
-        if (dadesdePacient.sospitaPneumocystis) {
+        if (dadesProva.sospitaPneumocystis) {
             diagnostic.push("Sospita de *Pneumocystis jirovecii*: Tractament amb Sulfametoxazol/Trimetoprim 800/160mg cada 12h v.o. + Àcid Fòlic.\n\n");
         }
     }
 }
 
 // [3] Tractament generalitzat
-if (dadesdePacient.necessitaOxigenoterapia) {
+if (dadesProva.necessitaOxigenoterapia) {
     diagnostic.push("Oxigenoteràpia: Ajustar segons SatO2 ≥ 92%.\n\n");
 }
 
-if (dadesdePacient.inhibidorBombaProtons) {
+if (dadesProva.inhibidorBombaProtons) {
     diagnostic.push("Inhibidor bomba protons: Omeprazol 20mg cada 12-24h v.o.\n\n");
 }
 
-if (dadesdePacient.nAcetilcisteina) {
+if (dadesProva.nAcetilcisteina) {
     diagnostic.push("N-Acetilcisteïna 600mg cada 8h v.o.: Potent antioxidant pulmonar.\n\n");
 }
 
-if (dadesdePacient.nebulitzacions) {
+if (dadesProva.nebulitzacions) {
     diagnostic.push("Nebulitzacions amb Atrovent + SF + Salbutamol (*si no hipertensió pulmonar*).\n\n");
 }
 
-if (dadesdePacient.hbpmNecessari) {
+if (dadesProva.hbpmNecessari) {
     diagnostic.push("HBPM: Bemiparina 2500-3500 UI/dia (segons Kg de pes).\n\n");
 }
 
-if (dadesdePacient.metilprednisolona) {
+if (dadesProva.metilprednisolona) {
     diagnostic.push("Metilprednisolona: ½-1 mg/Kg pes/d v.o. + Calci i Vitamina D 500mg/400 UI (2 comprimits/dia).\n\n");
 }
 
-if (dadesdePacient.losartanNecessari) {
+if (dadesProva.losartanNecessari) {
     diagnostic.push("Losartan 50mg/24h v.o.: Si sospita de dany epitelial alveolar i no hi ha hipoTA.\n\n");
 }
 
