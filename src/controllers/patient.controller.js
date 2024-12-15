@@ -1,7 +1,8 @@
 import qrcode from 'qrcode';
 import {createTable, insertPacient, getAllPacients, getPacientById, updatePacient, deletePacient} from '../pacient_db.js';
 import { getDiagnostic } from '../algoritme.js';
-import { Pacient } from '../pacient.js';
+import { Pacient, ProvesPacient } from '../pacient.js';
+import { tractament } from '../tractament.js';
 
 const RenderPatientInfo = async (req, res) => {
     try {
@@ -113,4 +114,49 @@ const CreateQRCode = async (req, res) =>{
       }
 }
 
-export { CreateQRCode, RenderPatientInfo, UpdatePacientView, saveUpdatePacient, AddPatientView, AddPatient };
+const showTestPatientForm = async (req, res) => {
+  try {
+    var patient = getPacientById(req.params.id);
+    res.render('testPatient', {patient});
+  } catch (err) {
+    console.error('Error mostrant el formulari de proves:', err);
+    res.status(500).send('Error intern del servidor');
+  }
+};
+
+const processProvesPacient = async (req, res) => {
+  try {
+    var pacientProves = new ProvesPacient();
+
+    // Assignar els valors del formulari
+    pacientProves.urgencia = req.body.urgencia;
+    pacientProves.provesAnalitiquesUrgents.rxTorax = req.body.rxTorax;
+    pacientProves.provesAnalitiquesUrgents.suspitapneu = req.body.suspitapneu;
+    pacientProves.dxConcret = req.body.dxConcret;
+    pacientProves.sospitaTEP = req.body.sospitaTEP;
+    pacientProves.tepConfirmat = req.body.tepConfirmat;
+    pacientProves.immunocompetent = req.body.immunocompetent;
+    pacientProves.immunosupressors = req.body.immunosupressors;
+    pacientProves.pcrPositivaInfluenza = req.body.pcrPositivaInfluenza;
+    pacientProves.sospitaCMV = req.body.sospitaCMV;
+    pacientProves.sospitaPneumocystis = req.body.sospitaPneumocystis;
+    pacientProves.necessitaOxigenoterapia = req.body.necessitaOxigenoterapia;
+    pacientProves.inhibidorBombaProtons = req.body.inhibidorBombaProtons;
+    pacientProves.nAcetilcisteina = req.body.nAcetilcisteina;
+    pacientProves.nebulitzacions = req.body.nebulitzacions;
+    pacientProves.hbpmNecessari = req.body.hbpmNecessari;
+    pacientProves.metilprednisolona = req.body.metilprednisolona;
+    pacientProves.losartanNecessari = req.body.losartanNecessari;
+
+    // Cridar la funció de tractament
+    const resultatTractament = tractament(pacientProves);
+    console.log(resultatTractament);
+    // Renderitzar una pàgina amb el resultat
+    res.render('resultatTractament', { resultat: resultatTractament });
+  } catch (err) {
+    console.error('Error processant les proves del pacient:', err);
+    res.status(500).send('Error intern del servidor');
+  }
+};
+
+export { CreateQRCode, RenderPatientInfo, UpdatePacientView, saveUpdatePacient, AddPatientView, AddPatient, processProvesPacient, showTestPatientForm};

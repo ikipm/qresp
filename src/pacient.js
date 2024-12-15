@@ -85,4 +85,4 @@ class ProvesPacient {
     }
 }
 
-export { Pacient, DadesPacient};
+export { Pacient, DadesPacient, ProvesPacient};

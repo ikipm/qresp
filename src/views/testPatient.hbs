@@ -1,0 +1,139 @@
+<style>
+    form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    font-family: Arial, sans-serif;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="checkbox"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+</style>
+
+<form action="/patient/test/{{patient.id}}" method="POST">
+    <h1>Proves Pacient</h1>
+    <div>
+        <label for="urgencia">És una urgència?</label>
+        <input type="checkbox" id="urgencia" name="urgencia" {{#if urgencia}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="rxTorax">Radiografia de tòrax:</label>
+        <input type="checkbox" id="rxTorax" name="rxTorax" {{#if rxTorax}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="suspitapneu">Sospita de pneumònia:</label>
+        <input type="checkbox" id="suspitapneu" name="suspitapneu" {{#if suspitapneu}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="dxConcret">Diagnòstic concret:</label>
+        <input type="text" id="dxConcret" name="dxConcret" value="{{dxConcret}}" placeholder="Exemple: pneumonia">
+    </div>
+    <div>
+        <label for="sospitaTEP">Sospita de TEP:</label>
+        <input type="checkbox" id="sospitaTEP" name="sospitaTEP" {{#if sospitaTEP}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="tepConfirmat">TEP confirmat:</label>
+        <input type="checkbox" id="tepConfirmat" name="tepConfirmat" {{#if tepConfirmat}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="immunocompetent">És immunocompetent?</label>
+        <input type="checkbox" id="immunocompetent" name="immunocompetent" {{#if immunocompetent}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="immunosupressors">Pren immunosupressors?</label>
+        <input type="checkbox" id="immunosupressors" name="immunosupressors" {{#if immunosupressors}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="pcrPositivaInfluenza">PCR positiva per Influenza:</label>
+        <input type="checkbox" id="pcrPositivaInfluenza" name="pcrPositivaInfluenza" {{#if pcrPositivaInfluenza}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="sospitaCMV">Sospita de CMV:</label>
+        <input type="checkbox" id="sospitaCMV" name="sospitaCMV" {{#if sospitaCMV}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="sospitaPneumocystis">Sospita de Pneumocystis jirovecii:</label>
+        <input type="checkbox" id="sospitaPneumocystis" name="sospitaPneumocystis" {{#if sospitaPneumocystis}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="necessitaOxigenoterapia">Requereix oxigenoteràpia:</label>
+        <input type="checkbox" id="necessitaOxigenoterapia" name="necessitaOxigenoterapia" {{#if necessitaOxigenoterapia}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="inhibidorBombaProtons">Necessita inhibidor de bomba de protons:</label>
+        <input type="checkbox" id="inhibidorBombaProtons" name="inhibidorBombaProtons" {{#if inhibidorBombaProtons}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="nAcetilcisteina">Necessita N-Acetilcisteïna:</label>
+        <input type="checkbox" id="nAcetilcisteina" name="nAcetilcisteina" {{#if nAcetilcisteina}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="nebulitzacions">Necessita nebulitzacions:</label>
+        <input type="checkbox" id="nebulitzacions" name="nebulitzacions" {{#if nebulitzacions}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="hbpmNecessari">Requereix HBPM:</label>
+        <input type="checkbox" id="hbpmNecessari" name="hbpmNecessari" {{#if hbpmNecessari}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="metilprednisolona">Necessita Metilprednisolona:</label>
+        <input type="checkbox" id="metilprednisolona" name="metilprednisolona" {{#if metilprednisolona}}checked{{/if}}>
+    </div>
+    <div>
+        <label for="losartanNecessari">Necessita Losartan:</label>
+        <input type="checkbox" id="losartanNecessari" name="losartanNecessari" {{#if losartanNecessari}}checked{{/if}}>
+    </div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+</form>
