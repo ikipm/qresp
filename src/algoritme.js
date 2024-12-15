@@ -108,23 +108,23 @@ function getDiagnosticFPI(Pacient) {
     }
     
     // [2] Gasometria arterial
-    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+    if (dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer Gasometria arterial");
     }
     
     // [3] TCAR (Tomografia Computada d'Alta Resolució)
     if (dadesPacient.ofeg || 
         dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions) {
         diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
     }
     
     // [4] Prova de marxa de 6 minuts (PM6M)
     if (dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
         diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
     }
@@ -136,14 +136,14 @@ function getDiagnosticFPI(Pacient) {
     
     // [6] Cultiu d'esput
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio) {
         diagnostic.push("Fer cultiu d'esput");
     }
     
     // [7] ANGIO-TACAR + Dímer
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer ANGIO-TACAR + Dímer");
     }
     
@@ -240,23 +240,23 @@ function getDiagnosticNHf(Pacient) {
     }
     
     // [2] Gasometria arterial
-    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+    if (dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer Gasometria arterial");
     }
     
     // [3] TCAR (Tomografia Computada d'Alta Resolució)
     if (dadesPacient.ofeg || 
         dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions) {
         diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
     }
     
     // [4] Prova de marxa de 6 minuts (PM6M)
     if (dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
         diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
     }
@@ -268,14 +268,14 @@ function getDiagnosticNHf(Pacient) {
     
     // [6] Cultiu d'esput
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio) {
         diagnostic.push("Fer cultiu d'esput");
     }
     
     // [7] ANGIO-TACAR + Dímer
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer ANGIO-TACAR + Dímer");
     }
     
@@ -371,23 +371,23 @@ function getDiagnosticEPIDEAS(Pacient){
     }
     
     // [2] Gasometria arterial
-    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+    if (dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer Gasometria arterial");
     }
     
     // [3] TCAR (Tomografia Computada d'Alta Resolució)
     if (dadesPacient.ofeg || 
         dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions) {
         diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
     }
     
     // [4] Prova de marxa de 6 minuts (PM6M)
     if (dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
         diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
     }
@@ -399,14 +399,14 @@ function getDiagnosticEPIDEAS(Pacient){
     
     // [6] Cultiu d'esput
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio) {
         diagnostic.push("Fer cultiu d'esput");
     }
     
     // [7] ANGIO-TACAR + Dímer
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer ANGIO-TACAR + Dímer");
     }
     
@@ -493,23 +493,23 @@ function getDiagnosticFNC(Pacient){
     }
     
     // [2] Gasometria arterial
-    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+    if (dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer Gasometria arterial");
     }
     
     // [3] TCAR (Tomografia Computada d'Alta Resolució)
     if (dadesPacient.ofeg || 
         dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions) {
         diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
     }
     
     // [4] Prova de marxa de 6 minuts (PM6M)
     if (dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
         diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
     }
@@ -521,14 +521,14 @@ function getDiagnosticFNC(Pacient){
     
     // [6] Cultiu d'esput
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio) {
         diagnostic.push("Fer cultiu d'esput");
     }
     
     // [7] ANGIO-TACAR + Dímer
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer ANGIO-TACAR + Dímer");
     }
     
@@ -619,23 +619,23 @@ function getDiagnosticSAR(Pacient){
     }
     
     // [2] Gasometria arterial
-    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+    if (dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer Gasometria arterial");
     }
     
     // [3] TCAR (Tomografia Computada d'Alta Resolució)
     if (dadesPacient.ofeg || 
         dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions) {
         diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
     }
     
     // [4] Prova de marxa de 6 minuts (PM6M)
     if (dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
         diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
     }
@@ -647,14 +647,14 @@ function getDiagnosticSAR(Pacient){
     
     // [6] Cultiu d'esput
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio) {
         diagnostic.push("Fer cultiu d'esput");
     }
     
     // [7] ANGIO-TACAR + Dímer
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer ANGIO-TACAR + Dímer");
     }
     
@@ -761,23 +761,23 @@ function getDiagnosticEXTRA(Pacient){
     }
     
     // [2] Gasometria arterial
-    if (dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+    if (dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer Gasometria arterial");
     }
     
     // [3] TCAR (Tomografia Computada d'Alta Resolució)
     if (dadesPacient.ofeg || 
         dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions) {
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions) {
         diagnostic.push("Fer TCAR (Tomografia Computada d'Alta Resolució)");
     }
     
     // [4] Prova de marxa de 6 minuts (PM6M)
     if (dadesPacient.ofeg || 
-        dadesPacient.SignesAlarma.IncrementDeRespiracions || 
+        dadesPacient.SingesAlarmaPresentsIncrementDeRespiracions || 
         (dadesPacient.MalaltiesPrevis && dadesPacient.DLCO < 40)) {
         diagnostic.push("Fer Prova de Marxa de 6 minuts (PM6M)");
     }
@@ -789,14 +789,14 @@ function getDiagnosticEXTRA(Pacient){
     
     // [6] Cultiu d'esput
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio) {
         diagnostic.push("Fer cultiu d'esput");
     }
     
     // [7] ANGIO-TACAR + Dímer
     if (dadesPacient.DolorToracic || 
-        dadesPacient.SignesAlarma.FebreAltaODesaturacio || 
-        dadesPacient.SignesAlarma.OfegEnReposOCianosi) {
+        dadesPacient.SingesAlarmaPresentsFebreAltaODesaturacio || 
+        dadesPacient.SingesAlarmaPresentsOfegEnReposOCianosi) {
         diagnostic.push("Fer ANGIO-TACAR + Dímer");
     }
     
