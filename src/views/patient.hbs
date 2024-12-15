@@ -159,8 +159,7 @@
 </div>
 
 <div class="diagnostic">
-    <div class="photo"></div>
-    <div class="details">
+    <div class="details" style="width: 100%;">
         <h1>Diagnostic</h1>
         <ul>
             {{#each diagnostic}}
@@ -169,6 +168,13 @@
         </ul>
         <a href="/patient/edit/{{patient.id}}" class="button-link">Edita la informació</a>
         <a href="/patient/test/{{patient.id}}" class="button-link">Fes un test</a>
+    </div>
+</div>
+
+<div class="diagnostic">
+    <div class="details" style="width: 100%;">
+        <h1>Tractament</h1>
+        <p>{{tractament}}</p>
     </div>
 </div>
 </br>
