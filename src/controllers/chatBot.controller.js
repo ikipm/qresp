@@ -51,7 +51,7 @@ Altres factors:
 
 A més, el pacient ha indicat que ${userInput}.
 
-Proporciona una anàlisi clínica general i possibles recomanacions per aquest pacient, tenint en compte els símptomes, signes d'alarma, factors associats i les indicacions del pacient.
+Amb totes aquestes dades, considerant sobretot l'entrada de l'usuari, considera si és adient que visiti el metge amb urgència o si pot esperar a una visita programada. A part d'aixó, ofereix una petita guia de com podria tractar-se el pacient en cas de ser necessari.
     `;
 
   try {
