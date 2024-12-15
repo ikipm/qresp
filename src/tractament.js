@@ -74,6 +74,6 @@ function tractament(dadesProva){
     diagnostic.push("Individualitzar cada cas segons el context clínic i + tractament específic.\n\n");
     
     // Retorn del diagnòstic
-    return diagnostic.length > 0 ? diagnostic : ["No s'han detectat condicions específiques. Controlar i monitoritzar."];
+    return diagnostic.length > 1 ? diagnostic : ["No s'han detectat condicions específiques. Controlar i monitoritzar."];
 }
 export {tractament};
