@@ -4,7 +4,6 @@ import { engine } from 'express-handlebars'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { createTable, getAllPacients, getPacientById, insertSamplePacients, updatePacient } from './pacient_db.js'
-import { generarPromptIA } from './algoritme.js'
 
 // Create an express app at port 3000
 const app = express()
